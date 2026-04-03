@@ -32,12 +32,12 @@ namespace CanteenProcurement.Core.Algorithms
         /// <summary>
         /// 执行信息
         /// </summary>
-        public string Message { get; set; }
+        public string Message { get; set; } = string.Empty;
 
-        public ScheduleResult(bool isValid = true, string message = null)
+        public ScheduleResult(bool isValid = true, string? message = null)
         {
             IsValid = isValid;
-            Message = message;
+            Message = message ?? string.Empty;
         }
     }
 
@@ -54,7 +54,7 @@ namespace CanteenProcurement.Core.Algorithms
         /// <summary>
         /// 商品
         /// </summary>
-        public Product Product { get; set; }
+        public Product Product { get; set; } = new();
 
         /// <summary>
         /// 采购数量
@@ -85,7 +85,7 @@ namespace CanteenProcurement.Core.Algorithms
         /// <summary>
         /// 分类编码
         /// </summary>
-        public string CategoryCode { get; set; }
+        public string CategoryCode { get; set; } = string.Empty;
 
         /// <summary>
         /// 调度项列表
@@ -129,12 +129,12 @@ namespace CanteenProcurement.Core.Algorithms
         /// <summary>
         /// 错误信息
         /// </summary>
-        public string ErrorMessage { get; set; }
+        public string ErrorMessage { get; set; } = string.Empty;
 
-        public RuleValidationResult(bool isValid = true, string errorMessage = null)
+        public RuleValidationResult(bool isValid = true, string? errorMessage = null)
         {
             IsValid = isValid;
-            ErrorMessage = errorMessage;
+            ErrorMessage = errorMessage ?? string.Empty;
         }
     }
 
@@ -182,7 +182,7 @@ namespace CanteenProcurement.Core.Algorithms
         /// <summary>
         /// 获取指定分类的预算
         /// </summary>
-        public TaskCategoryBudget GetCategoryBudget(string categoryCode)
+        public TaskCategoryBudget? GetCategoryBudget(string categoryCode)
         {
             return CategoryBudgets.TryGetValue(categoryCode, out var budget) ? budget : null;
         }
@@ -206,7 +206,7 @@ namespace CanteenProcurement.Core.Algorithms
         /// <summary>
         /// 分类编码
         /// </summary>
-        public string CategoryCode { get; set; }
+        public string CategoryCode { get; set; } = string.Empty;
 
         /// <summary>
         /// 预算占比
@@ -268,7 +268,7 @@ namespace CanteenProcurement.Core.Algorithms
         /// <summary>
         /// 策略类型
         /// </summary>
-        public string Type { get; set; }
+        public string Type { get; set; } = string.Empty;
 
         /// <summary>
         /// 调度频率（天）

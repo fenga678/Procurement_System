@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CanteenProcurement.Core.Entities;
-using Microsoft.Extensions.Logging;
 
 namespace CanteenProcurement.Core.Algorithms
 {
@@ -11,13 +10,8 @@ namespace CanteenProcurement.Core.Algorithms
     /// </summary>
     public class NoDuplicateSameDayRule : IScheduleRule
     {
-        private readonly ILogger<NoDuplicateSameDayRule> _logger;
 
         public string RuleName => "同日内不重复规则";
-
-        public NoDuplicateSameDayRule()
-        {
-        }
 
         /// <summary>
         /// 验证规则
@@ -45,13 +39,8 @@ namespace CanteenProcurement.Core.Algorithms
     /// </summary>
     public class MinIntervalRule : IScheduleRule
     {
-        private readonly ILogger<MinIntervalRule> _logger;
 
         public string RuleName => "最小间隔天数规则";
-
-        public MinIntervalRule()
-        {
-        }
 
         /// <summary>
         /// 验证规则
@@ -89,13 +78,8 @@ namespace CanteenProcurement.Core.Algorithms
     /// </summary>
     public class CategoryBudgetRule : IScheduleRule
     {
-        private readonly ILogger<CategoryBudgetRule> _logger;
 
         public string RuleName => "分类预算规则";
-
-        public CategoryBudgetRule()
-        {
-        }
 
         /// <summary>
         /// 验证规则
@@ -127,13 +111,8 @@ namespace CanteenProcurement.Core.Algorithms
     /// </summary>
     public class ProductPriceValidityRule : IScheduleRule
     {
-        private readonly ILogger<ProductPriceValidityRule> _logger;
 
         public string RuleName => "商品价格有效性规则";
-
-        public ProductPriceValidityRule()
-        {
-        }
 
         /// <summary>
         /// 验证规则
@@ -178,13 +157,8 @@ namespace CanteenProcurement.Core.Algorithms
     /// </summary>
     public class BudgetDistributionRule : IScheduleRule
     {
-        private readonly ILogger<BudgetDistributionRule> _logger;
 
         public string RuleName => "预算分布均匀性规则";
-
-        public BudgetDistributionRule()
-        {
-        }
 
         /// <summary>
         /// 验证规则
@@ -232,7 +206,6 @@ namespace CanteenProcurement.Core.Algorithms
     public class TotalBudgetRule : IScheduleRule
     {
         private readonly decimal _totalBudget;
-        private readonly ILogger<TotalBudgetRule> _logger;
 
         public string RuleName => "总预算限制规则";
 
@@ -262,14 +235,13 @@ namespace CanteenProcurement.Core.Algorithms
     /// <summary>
     /// 随机波动范围规则
     /// </summary>
-    public class RandomFlucuationRule : IScheduleRule
+    public class RandomFluctuationRule : IScheduleRule
     {
         private readonly decimal _maxFluctuationRate;
-        private readonly ILogger<RandomFlucuationRule> _logger;
 
         public string RuleName => "随机波动范围规则";
 
-        public RandomFlucuationRule(decimal maxFluctuationRate = 0.1m)
+        public RandomFluctuationRule(decimal maxFluctuationRate = 0.1m)
         {
             _maxFluctuationRate = maxFluctuationRate;
         }
@@ -297,13 +269,8 @@ namespace CanteenProcurement.Core.Algorithms
     /// </summary>
     public class ProductActivityRule : IScheduleRule
     {
-        private readonly ILogger<ProductActivityRule> _logger;
 
         public string RuleName => "商品活动状态规则";
-
-        public ProductActivityRule()
-        {
-        }
 
         /// <summary>
         /// 验证规则

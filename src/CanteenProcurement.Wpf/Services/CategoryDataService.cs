@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Threading.Tasks;
 using CanteenProcurement.Core.Interfaces;
 
@@ -58,6 +57,7 @@ namespace CanteenProcurement.Wpf.Services
 
         public async Task<int> CreateCategoryAsync(CategoryRecord record)
         {
+            ValidateCategoryRecord(record);
             await using var conn = await DatabaseConfig.CreateAndOpenConnectionAsync();
             _hasDailyItemColumns ??= await _schemaProvider.HasDailyItemColumnsAsync(conn);
             await using var tx = await conn.BeginTransactionAsync();
@@ -98,6 +98,7 @@ namespace CanteenProcurement.Wpf.Services
 
         public async Task<int> UpdateCategoryAsync(CategoryRecord record)
         {
+            ValidateCategoryRecord(record);
             await using var conn = await DatabaseConfig.CreateAndOpenConnectionAsync();
             _hasDailyItemColumns ??= await _schemaProvider.HasDailyItemColumnsAsync(conn);
             await using var tx = await conn.BeginTransactionAsync();
@@ -136,6 +137,44 @@ namespace CanteenProcurement.Wpf.Services
             {
                 await tx.RollbackAsync();
                 throw;
+            }
+        }
+
+        private static void ValidateCategoryRecord(CategoryRecord record)
+        {
+            if (record == null)
+            {
+                throw new ArgumentNullException(nameof(record));
+            }
+
+            if (string.IsNullOrWhiteSpace(record.Name))
+            {
+                throw new InvalidOperationException("分类名称不能为空。");
+            }
+
+            if (string.IsNullOrWhiteSpace(record.Code))
+            {
+                throw new InvalidOperationException("分类编码不能为空。");
+            }
+
+            if (record.Ratio < 0 || record.Ratio > 1)
+            {
+                throw new InvalidOperationException("分类占比必须在 0 到 1 之间。");
+            }
+
+            if (record.FrequencyDays <= 0)
+            {
+                throw new InvalidOperationException("出现频率必须大于 0 天。");
+            }
+
+            if (record.DailyMinItems <= 0 || record.DailyMaxItems <= 0)
+            {
+                throw new InvalidOperationException("每日品类上下限必须大于 0。");
+            }
+
+            if (record.DailyMinItems > record.DailyMaxItems)
+            {
+                throw new InvalidOperationException("每日最小品类数不能大于最大品类数。");
             }
         }
 

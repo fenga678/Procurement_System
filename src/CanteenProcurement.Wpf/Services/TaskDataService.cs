@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -54,6 +53,7 @@ namespace CanteenProcurement.Wpf.Services
 
         public async Task<int> CreateTaskAsync(TaskRecord record, CancellationToken ct = default)
         {
+            ValidateTaskRecord(record);
             await using var conn = await DatabaseConfig.CreateAndOpenConnectionAsync();
             await using var tx = await conn.BeginTransactionAsync(ct);
             try
@@ -362,8 +362,29 @@ namespace CanteenProcurement.Wpf.Services
             return fixedAmounts;
         }
 
-    }
+        private static void ValidateTaskRecord(TaskRecord record)
+        {
+            if (record == null)
+            {
+                throw new ArgumentNullException(nameof(record));
+            }
 
+            if (string.IsNullOrWhiteSpace(record.YearMonth) || record.YearMonth.Length != 6 || !record.YearMonth.All(char.IsDigit))
+            {
+                throw new InvalidOperationException("任务年月格式必须为 yyyyMM，例如 202604。");
+            }
+
+            if (record.TotalBudget <= 0)
+            {
+                throw new InvalidOperationException("任务总预算必须大于 0。");
+            }
+
+            if (record.FloatRate < 0 || record.FloatRate > 1)
+            {
+                throw new InvalidOperationException("预算波动率必须在 0 到 1 之间。");
+            }
+        }
+    }
 
     public class TaskRecord
     {
@@ -387,9 +408,7 @@ namespace CanteenProcurement.Wpf.Services
         public int DailyMaxItems { get; set; } = 1;
     }
 
-
     public class ProductPriceRecord
-
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
