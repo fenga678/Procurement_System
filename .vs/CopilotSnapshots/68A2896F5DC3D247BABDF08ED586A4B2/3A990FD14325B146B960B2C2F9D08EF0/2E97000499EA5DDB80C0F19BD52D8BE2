@@ -1,0 +1,69 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using CanteenProcurementSystem.Models;
+
+namespace CanteenProcurementSystem.Views
+{
+    public partial class ProductManagementView : UserControl
+    {
+        private void OnBulkImportClick(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext;
+            IEnumerable<Category> categories = Enumerable.Empty<Category>();
+
+            try
+            {
+                if (vm != null)
+                {
+                    var prop = vm.GetType().GetProperty("Categories");
+                    var val = prop?.GetValue(vm);
+                    categories = val as IEnumerable<Category> ?? Enumerable.Empty<Category>();
+                }
+            }
+            catch
+            {
+                // 忽略反射读取失败
+            }
+
+            var win = new ImportProductsWindow(categories, products =>
+            {
+                try
+                {
+                    if (vm != null)
+                    {
+                        // 优先尝试 ImportProductsAsync(IEnumerable<Product>)
+                        var method = vm.GetType().GetMethod("ImportProductsAsync", new[] { typeof(IEnumerable<Product>) });
+                        if (method != null)
+                        {
+                            var result = method.Invoke(vm, new object[] { products });
+                            if (result is Task t) t.GetAwaiter().GetResult();
+                            return;
+                        }
+
+                        // 其次尝试 ImportProducts(IEnumerable<Product>)
+                        method = vm.GetType().GetMethod("ImportProducts", new[] { typeof(IEnumerable<Product>) });
+                        if (method != null)
+                        {
+                            var res2 = method.Invoke(vm, new object[] { products });
+                            if (res2 is Task t2) t2.GetAwaiter().GetResult();
+                            return;
+                        }
+                    }
+
+                    MessageBox.Show("未在 ViewModel 中找到 ImportProductsAsync 或 ImportProducts 方法。", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"导入回调执行失败，请在 ViewModel 中实现 ImportProductsAsync。详细：{ex.Message}", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            });
+
+            win.Owner = Window.GetWindow(this);
+            win.ShowDialog();
+        }
+    }
+}

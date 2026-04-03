@@ -1,0 +1,83 @@
+﻿using Dapper;
+using System.Data.SQLite;
+using CanteenProcurementSystem.Models;
+
+namespace CanteenProcurementSystem.DAL;
+
+public class ProcurementDetailRepository : IRepository<ProcurementDetail>
+{
+    private readonly string _connectionString;
+
+    public ProcurementDetailRepository()
+    {
+        _connectionString = DatabaseHelper.GetConnectionString();
+    }
+
+    public async Task<IEnumerable<ProcurementDetail>> GetAllAsync()
+    {
+        using var conn = new SQLiteConnection(_connectionString);
+        const string sql = "SELECT * FROM procurement_details ORDER BY id";
+        return await conn.QueryAsync<ProcurementDetail>(sql);
+    }
+
+    public async Task<ProcurementDetail?> GetByIdAsync(int id)
+    {
+        using var conn = new SQLiteConnection(_connectionString);
+        const string sql = "SELECT * FROM procurement_details WHERE id = @Id";
+        return await conn.QueryFirstOrDefaultAsync<ProcurementDetail>(sql, new { Id = id });
+    }
+
+    public async Task<IEnumerable<ProcurementDetail>> GetByTaskIdAsync(int taskId)
+    {
+        using var conn = new SQLiteConnection(_connectionString);
+        const string sql = "SELECT * FROM procurement_details WHERE task_id = @TaskId ORDER BY date, category_code";
+        return await conn.QueryAsync<ProcurementDetail>(sql, new { TaskId = taskId });
+    }
+
+    public async Task<int> AddAsync(ProcurementDetail entity)
+    {
+        using var conn = new SQLiteConnection(_connectionString);
+        const string sql = @"
+            INSERT INTO procurement_details (task_id, date, product_id, category_code, price, quantity, amount, created_at)
+            VALUES (@TaskId, @Date, @ProductId, @CategoryCode, @Price, @Quantity, @Amount, @CreatedAt);
+            SELECT last_insert_rowid();";
+        return await conn.ExecuteScalarAsync<int>(sql, entity);
+    }
+
+    public async Task AddRangeAsync(IEnumerable<ProcurementDetail> entities)
+    {
+        using var conn = new SQLiteConnection(_connectionString);
+        const string sql = @"
+            INSERT INTO procurement_details (task_id, date, product_id, category_code, price, quantity, amount, created_at)
+            VALUES (@TaskId, @Date, @ProductId, @CategoryCode, @Price, @Quantity, @Amount, @CreatedAt);";
+        await conn.ExecuteAsync(sql, entities);
+    }
+
+    public async Task<bool> DeleteByTaskIdAsync(int taskId)
+    {
+        using var conn = new SQLiteConnection(_connectionString);
+        const string sql = "DELETE FROM procurement_details WHERE task_id = @TaskId";
+        var result = await conn.ExecuteAsync(sql, new { TaskId = taskId });
+        return result > 0;
+    }
+
+    public async Task<bool> UpdateAsync(ProcurementDetail entity)
+    {
+        using var conn = new SQLiteConnection(_connectionString);
+        const string sql = @"
+            UPDATE procurement_details 
+            SET task_id = @TaskId, date = @Date, product_id = @ProductId, category_code = @CategoryCode, 
+                price = @Price, quantity = @Quantity, amount = @Amount
+            WHERE id = @Id";
+        var result = await conn.ExecuteAsync(sql, entity);
+        return result > 0;
+    }
+
+    public async Task<bool> DeleteAsync(int id)
+    {
+        using var conn = new SQLiteConnection(_connectionString);
+        const string sql = "DELETE FROM procurement_details WHERE id = @Id";
+        var result = await conn.ExecuteAsync(sql, new { Id = id });
+        return result > 0;
+    }
+}

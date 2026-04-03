@@ -1,0 +1,15 @@
+<UserControl x:Class="CanteenProcurement.Wpf.Controls.ActionButtonGroup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Root">
+    <Border Style="{StaticResource ActionButtonGroupContainerStyle}">
+        <DockPanel LastChildFill="True">
+            <TextBlock Text="{Binding Title, ElementName=Root}"
+                       Style="{StaticResource SubTitleStyle}"
+                       Foreground="{Binding TitleForeground, ElementName=Root}"
+                       VerticalAlignment="Center"
+                       Margin="0,0,16,0" />
+            <ContentPresenter DockPanel.Dock="Right" Content="{Binding BodyContent, ElementName=Root}" />
+        </DockPanel>
+    </Border>
+</UserControl>

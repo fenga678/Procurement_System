@@ -1,0 +1,159 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\HNYY\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|e:\\hnyy\\src\\canteenprocurement.wpf\\views\\systemsettingsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|solutionrelative:src\\canteenprocurement.wpf\\views\\systemsettingsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|e:\\hnyy\\src\\canteenprocurement.wpf\\resources\\styles\\controls.inputs.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|solutionrelative:src\\canteenprocurement.wpf\\resources\\styles\\controls.inputs.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|e:\\hnyy\\src\\canteenprocurement.wpf\\dialogs\\producteditordialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|solutionrelative:src\\canteenprocurement.wpf\\dialogs\\producteditordialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|e:\\hnyy\\src\\canteenprocurement.wpf\\dialogs\\producteditordialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|solutionrelative:src\\canteenprocurement.wpf\\dialogs\\producteditordialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|e:\\hnyy\\src\\canteenprocurement.wpf\\views\\productmanagementview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|solutionrelative:src\\canteenprocurement.wpf\\views\\productmanagementview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|e:\\hnyy\\src\\canteenprocurement.wpf\\views\\taskmanagementview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|solutionrelative:src\\canteenprocurement.wpf\\views\\taskmanagementview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|e:\\hnyy\\src\\canteenprocurement.wpf\\views\\categorymanagementview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|solutionrelative:src\\canteenprocurement.wpf\\views\\categorymanagementview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|e:\\hnyy\\src\\canteenprocurement.wpf\\dialogs\\webimportdialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|solutionrelative:src\\canteenprocurement.wpf\\dialogs\\webimportdialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|e:\\hnyy\\src\\canteenprocurement.wpf\\resources\\styles\\controls.buttons.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}|src\\CanteenProcurement.Wpf\\CanteenProcurement.Wpf.csproj|solutionrelative:src\\canteenprocurement.wpf\\resources\\styles\\controls.buttons.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 293,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SystemSettingsView.xaml",
+              "DocumentMoniker": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Views\\SystemSettingsView.xaml",
+              "RelativeDocumentMoniker": "src\\CanteenProcurement.Wpf\\Views\\SystemSettingsView.xaml",
+              "ToolTip": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Views\\SystemSettingsView.xaml",
+              "RelativeToolTip": "src\\CanteenProcurement.Wpf\\Views\\SystemSettingsView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-03T14:53:21.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductEditorDialog.xaml",
+              "DocumentMoniker": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Dialogs\\ProductEditorDialog.xaml",
+              "RelativeDocumentMoniker": "src\\CanteenProcurement.Wpf\\Dialogs\\ProductEditorDialog.xaml",
+              "ToolTip": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Dialogs\\ProductEditorDialog.xaml",
+              "RelativeToolTip": "src\\CanteenProcurement.Wpf\\Dialogs\\ProductEditorDialog.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-03T13:56:09.136Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductEditorDialog.xaml.cs",
+              "DocumentMoniker": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Dialogs\\ProductEditorDialog.xaml.cs",
+              "RelativeDocumentMoniker": "src\\CanteenProcurement.Wpf\\Dialogs\\ProductEditorDialog.xaml.cs",
+              "ToolTip": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Dialogs\\ProductEditorDialog.xaml.cs",
+              "RelativeToolTip": "src\\CanteenProcurement.Wpf\\Dialogs\\ProductEditorDialog.xaml.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAkwBIAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T13:50:26.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CategoryManagementView.xaml",
+              "DocumentMoniker": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Views\\CategoryManagementView.xaml",
+              "RelativeDocumentMoniker": "src\\CanteenProcurement.Wpf\\Views\\CategoryManagementView.xaml",
+              "ToolTip": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Views\\CategoryManagementView.xaml",
+              "RelativeToolTip": "src\\CanteenProcurement.Wpf\\Views\\CategoryManagementView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-03T13:46:16.078Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "WebImportDialog.xaml",
+              "DocumentMoniker": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Dialogs\\WebImportDialog.xaml",
+              "RelativeDocumentMoniker": "src\\CanteenProcurement.Wpf\\Dialogs\\WebImportDialog.xaml",
+              "ToolTip": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Dialogs\\WebImportDialog.xaml",
+              "RelativeToolTip": "src\\CanteenProcurement.Wpf\\Dialogs\\WebImportDialog.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-03T13:31:42.583Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductManagementView.xaml",
+              "DocumentMoniker": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Views\\ProductManagementView.xaml",
+              "RelativeDocumentMoniker": "src\\CanteenProcurement.Wpf\\Views\\ProductManagementView.xaml",
+              "ToolTip": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Views\\ProductManagementView.xaml",
+              "RelativeToolTip": "src\\CanteenProcurement.Wpf\\Views\\ProductManagementView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-03T12:24:09.895Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Controls.Inputs.xaml",
+              "DocumentMoniker": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Resources\\Styles\\Controls.Inputs.xaml",
+              "RelativeDocumentMoniker": "src\\CanteenProcurement.Wpf\\Resources\\Styles\\Controls.Inputs.xaml",
+              "ToolTip": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Resources\\Styles\\Controls.Inputs.xaml",
+              "RelativeToolTip": "src\\CanteenProcurement.Wpf\\Resources\\Styles\\Controls.Inputs.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-03T12:21:17.289Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TaskManagementView.xaml",
+              "DocumentMoniker": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Views\\TaskManagementView.xaml",
+              "RelativeDocumentMoniker": "src\\CanteenProcurement.Wpf\\Views\\TaskManagementView.xaml",
+              "ToolTip": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Views\\TaskManagementView.xaml",
+              "RelativeToolTip": "src\\CanteenProcurement.Wpf\\Views\\TaskManagementView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-03T12:11:09.149Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Controls.Buttons.xaml",
+              "DocumentMoniker": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Resources\\Styles\\Controls.Buttons.xaml",
+              "RelativeDocumentMoniker": "src\\CanteenProcurement.Wpf\\Resources\\Styles\\Controls.Buttons.xaml",
+              "ToolTip": "E:\\HNYY\\src\\CanteenProcurement.Wpf\\Resources\\Styles\\Controls.Buttons.xaml",
+              "RelativeToolTip": "src\\CanteenProcurement.Wpf\\Resources\\Styles\\Controls.Buttons.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-03T12:05:49.132Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

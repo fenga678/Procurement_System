@@ -1,0 +1,153 @@
+﻿<Window x:Class="CanteenProcurementSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CanteenProcurementSystem"
+        mc:Ignorable="d"
+        Title="食堂物料预采购管理系统" Height="768" Width="1280" 
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundBrush}">
+    <Window.Resources>
+        <Style x:Key="NavButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextWhiteBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="15,12"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                                CornerRadius="5" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{StaticResource PrimaryLightColor}" Opacity="0.3"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{StaticResource PrimaryLightColor}" Opacity="0.5"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="{StaticResource PrimaryDarkBrush}" BorderThickness="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Background="{StaticResource PrimaryBrush}" Padding="15">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle Width="30" Height="30" Fill="{StaticResource TextWhiteBrush}" RadiusX="5" RadiusY="5"/>
+                        <TextBlock Text="采购管理" FontSize="20" FontWeight="Bold" 
+                                   Foreground="{StaticResource TextWhiteBrush}" VerticalAlignment="Center" Margin="12,0,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="10,0">
+                        <Button Content="商品管理" Command="{Binding NavigateToProductManagementCommand}" 
+                                Style="{StaticResource NavButtonStyle}" Margin="0,5"/>
+                        <Button Content="分类配置" Command="{Binding NavigateToCategoryConfigCommand}" 
+                                Style="{StaticResource NavButtonStyle}" Margin="0,5"/>
+                        <Button Content="采购任务管理" Command="{Binding NavigateToProcurementTaskCommand}" 
+                                Style="{StaticResource NavButtonStyle}" Margin="0,5"/>
+                        <Button Content="采购计划查看" Command="{Binding NavigateToProcurementPlanCommand}" 
+                                Style="{StaticResource NavButtonStyle}" Margin="0,5"/>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <Border Grid.Row="2" Padding="15" BorderBrush="{StaticResource PrimaryLightBrush}" BorderThickness="0,1,0,0">
+                    <TextBlock Text="v1.0.0" Foreground="{StaticResource TextWhiteBrush}" Opacity="0.7"/>
+                </Border>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource DividerBrush}" BorderThickness="0,0,0,1">
+                <Grid Margin="20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding CurrentViewTitle}" FontSize="20" FontWeight="Bold" 
+                               Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='yyyy-MM-dd HH:mm:ss'}" 
+                               VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" 
+                               xmlns:sys="clr-namespace:System;assembly=mscorlib"/>
+                </Grid>
+            </Border>
+
+            <ContentControl Grid.Row="1" Content="{Binding CurrentView}"/>
+        </Grid>
+    </Grid>
+
+    <Window.Resources>
+        <Style x:Key="NavButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextWhiteBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="15,12"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                                CornerRadius="5" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{StaticResource PrimaryLightColor}" Opacity="0.3"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{StaticResource PrimaryLightColor}" Opacity="0.5"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+</Window>

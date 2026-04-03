@@ -1,0 +1,13 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <FontFamily x:Key="FontFamily.Default">Microsoft YaHei UI</FontFamily>
+    <FontFamily x:Key="FontFamily.Emphasis">Segoe UI Semibold</FontFamily>
+
+    <sys:Double x:Key="FontSize.PageTitle">28</sys:Double>
+    <sys:Double x:Key="FontSize.SectionTitle">18</sys:Double>
+    <sys:Double x:Key="FontSize.SubTitle">14</sys:Double>
+    <sys:Double x:Key="FontSize.Body">14</sys:Double>
+    <sys:Double x:Key="FontSize.Caption">12</sys:Double>
+    <sys:Double x:Key="FontSize.Metric">32</sys:Double>
+</ResourceDictionary>

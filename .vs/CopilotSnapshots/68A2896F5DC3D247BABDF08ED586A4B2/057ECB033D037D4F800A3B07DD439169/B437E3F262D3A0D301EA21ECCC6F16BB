@@ -1,0 +1,147 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Windows;
+using CanteenProcurementSystem.Models;
+
+namespace CanteenProcurementSystem.Views
+{
+    public partial class ImportProductsWindow : Window
+    {
+        public class RowModel
+        {
+            public string Name { get; set; } = "";
+            public string CategoryName { get; set; } = "";
+            public decimal? Price { get; set; }
+            public string Unit { get; set; } = "";
+            public int? MinIntervalDays { get; set; }
+            public string Remark { get; set; } = "";
+            public int? Status { get; set; }
+            public string Error { get; set; } = "";
+        }
+
+        private readonly IEnumerable<Category> _categories;
+        private readonly Action<IEnumerable<Product>> _onConfirm;
+
+        public ImportProductsWindow(IEnumerable<Category> categories, Action<IEnumerable<Product>> onConfirm)
+        {
+            InitializeComponent();
+            _categories = categories ?? Enumerable.Empty<Category>();
+            _onConfirm = onConfirm;
+        }
+
+        private void OnParseClick(object sender, RoutedEventArgs e)
+        {
+            var text = PasteTextBox.Text ?? "";
+            var rows = ParseText(text, out int total, out int valid);
+            StatusText.Text = $"共 {total} 行，解析有效 {valid} 行，预览前 5 条";
+            PreviewGrid.ItemsSource = rows.Take(5).ToList();
+        }
+
+        private List<RowModel> ParseText(string text, out int totalLines, out int validCount)
+        {
+            var list = new List<RowModel>();
+            totalLines = 0;
+            validCount = 0;
+
+            if (string.IsNullOrWhiteSpace(text)) return list;
+            var lines = Regex.Split(text.Trim(), @"\r\n|\n");
+            totalLines = lines.Length;
+
+            foreach (var raw in lines)
+            {
+                var line = raw.Trim();
+                if (string.IsNullOrEmpty(line)) continue;
+                var cols = Regex.Split(line, @"[\t, ]+").Select(c => c.Trim()).Where(c => c.Length > 0).ToArray();
+                if (cols.Length == 0) continue;
+
+                var model = new RowModel();
+                try
+                {
+                    model.Name = cols.ElementAtOrDefault(0) ?? "";
+                    var catToken = cols.ElementAtOrDefault(1) ?? "";
+                    var cat = _categories.FirstOrDefault(c => string.Equals(c.Code, catToken, StringComparison.OrdinalIgnoreCase)
+                                                             || string.Equals(c.Name, catToken, StringComparison.OrdinalIgnoreCase));
+                    model.CategoryName = cat?.Name ?? catToken;
+
+                    var priceText = cols.ElementAtOrDefault(2) ?? "";
+                    if (!string.IsNullOrWhiteSpace(priceText) && decimal.TryParse(priceText, System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out var priceInv))
+                        model.Price = priceInv;
+                    else if (!string.IsNullOrWhiteSpace(priceText) && decimal.TryParse(priceText, System.Globalization.NumberStyles.Any, CultureInfo.CurrentCulture, out var priceCur))
+                        model.Price = priceCur;
+
+                    model.Unit = cols.ElementAtOrDefault(3) ?? "";
+                    if (int.TryParse(cols.ElementAtOrDefault(4) ?? "", out var iv)) model.MinIntervalDays = iv;
+                    model.Remark = cols.ElementAtOrDefault(5) ?? "";
+                    if (int.TryParse(cols.ElementAtOrDefault(6) ?? "", out var st)) model.Status = st;
+
+                    if (string.IsNullOrWhiteSpace(model.Name) || string.IsNullOrWhiteSpace(model.CategoryName))
+                        model.Error = "缺少名称或分类";
+                    else
+                    {
+                        var catByName = _categories.FirstOrDefault(c => string.Equals(c.Name, model.CategoryName, StringComparison.OrdinalIgnoreCase)
+                                                                      || string.Equals(c.Code, model.CategoryName, StringComparison.OrdinalIgnoreCase));
+                        if (catByName == null)
+                            model.Error = "分类未识别";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    model.Error = ex.Message;
+                }
+
+                if (string.IsNullOrEmpty(model.Error)) validCount++;
+                list.Add(model);
+            }
+
+            return list;
+        }
+
+        private void OnImportClick(object sender, RoutedEventArgs e)
+        {
+            var parsed = ParseText(PasteTextBox.Text ?? "", out _, out _);
+            var validRows = parsed.Where(r => string.IsNullOrEmpty(r.Error)).ToList();
+            if (!validRows.Any())
+            {
+                MessageBox.Show("没有可导入的数据。", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            var products = new List<Product>();
+            foreach (var r in validRows)
+            {
+                var cat = _categories.FirstOrDefault(c => string.Equals(c.Name, r.CategoryName, StringComparison.OrdinalIgnoreCase)
+                                                         || string.Equals(c.Code, r.CategoryName, StringComparison.OrdinalIgnoreCase));
+                if (cat == null) continue;
+                var p = new Product
+                {
+                    Name = r.Name,
+                    CategoryCode = cat.Code,
+                    Price = r.Price ?? 0m,
+                    Unit = r.Unit,
+                    MinIntervalDays = r.MinIntervalDays ?? 0,
+                    Remark = r.Remark,
+                    Status = (byte)(r.Status ?? 1)
+                };
+                products.Add(p);
+            }
+
+            try
+            {
+                _onConfirm?.Invoke(products);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"导入时发生错误：{ex.Message}", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void OnCancelClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+    }
+}

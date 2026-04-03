@@ -1,0 +1,96 @@
+<UserControl x:Class="CanteenProcurement.Wpf.Views.CategoryManagementView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:CanteenProcurement.Wpf.Controls"
+
+
+             mc:Ignorable="d"
+             d:DesignHeight="720"
+             d:DesignWidth="1100"
+             Background="{DynamicResource Brush.Background}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Style="{StaticResource PageHeaderCardStyle}" Margin="0,0,0,12" Padding="16,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="分类管理" Style="{StaticResource PageTitleStyle}" Foreground="{DynamicResource Brush.Text.Inverse}" FontSize="18" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center" FontSize="12" Foreground="{DynamicResource Brush.Text.Inverse}" Opacity="0.7">启用</TextBlock>
+                    <TextBlock Tag="Category.StatsCount" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource Brush.Text.Inverse}" Margin="4,0,4,0" />
+                    <TextBlock VerticalAlignment="Center" FontSize="12" Foreground="{DynamicResource Brush.Text.Inverse}" Opacity="0.7">/</TextBlock>
+                    <TextBlock Tag="Category.StatsTotal" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource Brush.Text.Inverse}" Margin="4,0,0,0" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" Style="{StaticResource CardStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <controls:ActionButtonGroup Grid.Row="0" Title="分类列表">
+                    <controls:ActionButtonGroup.BodyContent>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="新增分类" Style="{StaticResource PrimaryButtonStyle}" Click="AddCategory_Click" />
+                        </StackPanel>
+                    </controls:ActionButtonGroup.BodyContent>
+                </controls:ActionButtonGroup>
+
+                <DataGrid Grid.Row="1" x:Name="CategoryGrid"
+                          IsReadOnly="True"
+                          ItemsSource="{Binding Categories, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="序号" Width="80">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Seq}" HorizontalAlignment="Center" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="140" />
+                        <DataGridTextColumn Header="编码" Binding="{Binding Code}" Width="100" />
+                        <DataGridTextColumn Header="预算占比" Binding="{Binding RatioText}" Width="100" />
+                        <DataGridTextColumn Header="频率(天)" Binding="{Binding FrequencyDays}" Width="100" />
+                        <DataGridTextColumn Header="采购品类/天" Binding="{Binding DailyRangeText}" Width="140" />
+                        <DataGridTextColumn Header="排序" Binding="{Binding Sort}" Width="70" />
+                        <DataGridTemplateColumn Header="状态" Width="80">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <controls:StatusBadge Text="{Binding StatusText}" Tone="{Binding StatusTone}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="更新时间" Binding="{Binding UpdatedAt}" Width="100" />
+                        <DataGridTextColumn Header="" Width="10" MinWidth="10" />
+                        <DataGridTemplateColumn Header="操作" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="编辑" Style="{StaticResource GridActionPrimaryButtonStyle}" Width="60" Margin="0,0,6,0" Click="Edit_Click" Tag="{Binding Code}" />
+                                        <Button Content="启/停" Style="{StaticResource GridActionSecondaryButtonStyle}" Width="60" Margin="0,0,6,0" Click="Toggle_Click" Tag="{Binding Code}" />
+                                        <Button Content="删除" Style="{StaticResource GridActionDangerButtonStyle}" Width="60" Click="Delete_Click" Tag="{Binding Code}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

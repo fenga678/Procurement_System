@@ -1,0 +1,23 @@
+<UserControl x:Class="CanteenProcurement.Wpf.Controls.TopHeader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Root">
+    <Border Style="{StaticResource PageHeaderCardStyle}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="{Binding Title, ElementName=Root}" Style="{StaticResource TopHeaderTitleStyle}" />
+                <TextBlock Text="{Binding Subtitle, ElementName=Root}" Style="{StaticResource TopHeaderSubtitleStyle}" Margin="0,6,0,0" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock Text="{Binding MetaTitle, ElementName=Root}" Foreground="{DynamicResource Brush.Text.Inverse}" FontWeight="SemiBold" HorizontalAlignment="Right" />
+                <TextBlock Text="{Binding MetaSubtitle, ElementName=Root}" Style="{StaticResource TopHeaderSubtitleStyle}" HorizontalAlignment="Right" Margin="0,4,0,0" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

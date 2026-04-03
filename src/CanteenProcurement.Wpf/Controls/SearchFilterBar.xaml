@@ -1,0 +1,23 @@
+<UserControl x:Class="CanteenProcurement.Wpf.Controls.SearchFilterBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Root">
+    <Border Style="{StaticResource SearchFilterBarStyle}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <DockPanel LastChildFill="True">
+                <StackPanel DockPanel.Dock="Left">
+                    <TextBlock Text="{Binding Title, ElementName=Root}" Style="{StaticResource SubTitleStyle}" />
+                    <TextBlock Text="{Binding Description, ElementName=Root}" Style="{StaticResource HintTextStyle}" Margin="0,4,0,0" />
+                </StackPanel>
+                <ContentPresenter DockPanel.Dock="Right" Content="{Binding ActionsContent, ElementName=Root}" />
+            </DockPanel>
+
+            <ContentPresenter Grid.Row="1" Content="{Binding BodyContent, ElementName=Root}" Margin="0,16,0,0" />
+        </Grid>
+    </Border>
+</UserControl>

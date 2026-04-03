@@ -1,0 +1,5 @@
+e:\HNYY\dist\CanteenProcurement.Wpf.pdb
+e:\HNYY\dist\appsettings.json
+e:\HNYY\dist\CanteenProcurement.Core.pdb
+e:\HNYY\dist\CanteenProcurement.Application.pdb
+e:\HNYY\dist\CanteenProcurement.Wpf.exe

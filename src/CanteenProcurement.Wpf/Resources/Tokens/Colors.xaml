@@ -1,0 +1,44 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="Color.Brand.Primary.700">#0F5CB8</Color>
+    <Color x:Key="Color.Brand.Primary.600">#1565C0</Color>
+    <Color x:Key="Color.Brand.Primary.500">#1E88E5</Color>
+    <Color x:Key="Color.Brand.Primary.100">#D9ECFF</Color>
+
+    <Color x:Key="Color.Brand.Secondary.900">#0F2940</Color>
+    <Color x:Key="Color.Brand.Secondary.700">#163657</Color>
+    <Color x:Key="Color.Brand.Secondary.100">#E5EEF7</Color>
+
+    <Color x:Key="Color.Surface.Canvas">#F4F7FB</Color>
+    <Color x:Key="Color.Surface.Default">#FFFFFF</Color>
+    <Color x:Key="Color.Surface.Subtle">#EEF3F8</Color>
+    <Color x:Key="Color.Surface.Hover">#F8FBFF</Color>
+    <Color x:Key="Color.Surface.Disabled">#F3F5F7</Color>
+
+    <Color x:Key="Color.Text.Primary">#1A2B3C</Color>
+    <Color x:Key="Color.Text.Secondary">#425466</Color>
+    <Color x:Key="Color.Text.Muted">#6B7A90</Color>
+    <Color x:Key="Color.Text.Inverse">#FFFFFF</Color>
+
+    <Color x:Key="Color.Border.Default">#D7E3F1</Color>
+    <Color x:Key="Color.Border.Strong">#B7CCDF</Color>
+    <Color x:Key="Color.Border.Divider">#E0E7EF</Color>
+
+    <Color x:Key="Color.Status.Success">#1FAA89</Color>
+    <Color x:Key="Color.Status.Success.Subtle">#DFF7F0</Color>
+    <Color x:Key="Color.Status.Warning">#F5A524</Color>
+    <Color x:Key="Color.Status.Warning.Subtle">#FFF4DC</Color>
+    <Color x:Key="Color.Status.Danger">#E74C3C</Color>
+    <Color x:Key="Color.Status.Danger.Hover">#D64533</Color>
+    <Color x:Key="Color.Status.Danger.Subtle">#FDE8E6</Color>
+    <Color x:Key="Color.Status.Info">#00BCD4</Color>
+    <Color x:Key="Color.Status.Info.Subtle">#D9F7FB</Color>
+
+    <Color x:Key="PrimaryColor">#1E88E5</Color>
+    <Color x:Key="SecondaryColor">#0F2940</Color>
+    <Color x:Key="AccentColor">#00BCD4</Color>
+    <Color x:Key="BackgroundColor">#F4F7FB</Color>
+    <Color x:Key="TextColor">#1A2B3C</Color>
+    <Color x:Key="SuccessColor">#1FAA89</Color>
+    <Color x:Key="WarningColor">#F5A524</Color>
+</ResourceDictionary>

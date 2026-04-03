@@ -1,0 +1,59 @@
+﻿using Dapper;
+using System.Data.SQLite;
+using CanteenProcurementSystem.Models;
+
+namespace CanteenProcurementSystem.DAL;
+
+public class ProcurementTaskRepository : IRepository<ProcurementTask>
+{
+    private readonly string _connectionString;
+
+    public ProcurementTaskRepository()
+    {
+        _connectionString = DatabaseHelper.GetConnectionString();
+    }
+
+    public async Task<IEnumerable<ProcurementTask>> GetAllAsync()
+    {
+        using var conn = new SQLiteConnection(_connectionString);
+        const string sql = "SELECT * FROM procurement_tasks ORDER BY created_at DESC";
+        return await conn.QueryAsync<ProcurementTask>(sql);
+    }
+
+    public async Task<ProcurementTask?> GetByIdAsync(int id)
+    {
+        using var conn = new SQLiteConnection(_connectionString);
+        const string sql = "SELECT * FROM procurement_tasks WHERE id = @Id";
+        return await conn.QueryFirstOrDefaultAsync<ProcurementTask>(sql, new { Id = id });
+    }
+
+    public async Task<int> AddAsync(ProcurementTask entity)
+    {
+        using var conn = new SQLiteConnection(_connectionString);
+        const string sql = @"
+            INSERT INTO procurement_tasks (year_month, total_budget, float_rate, status, generated_at, created_at, updated_at)
+            VALUES (@YearMonth, @TotalBudget, @FloatRate, @Status, @GeneratedAt, @CreatedAt, @UpdatedAt);
+            SELECT last_insert_rowid();";
+        return await conn.ExecuteScalarAsync<int>(sql, entity);
+    }
+
+    public async Task<bool> UpdateAsync(ProcurementTask entity)
+    {
+        using var conn = new SQLiteConnection(_connectionString);
+        const string sql = @"
+            UPDATE procurement_tasks 
+            SET year_month = @YearMonth, total_budget = @TotalBudget, float_rate = @FloatRate, 
+                status = @Status, generated_at = @GeneratedAt, updated_at = @UpdatedAt
+            WHERE id = @Id";
+        var result = await conn.ExecuteAsync(sql, entity);
+        return result > 0;
+    }
+
+    public async Task<bool> DeleteAsync(int id)
+    {
+        using var conn = new SQLiteConnection(_connectionString);
+        const string sql = "DELETE FROM procurement_tasks WHERE id = @Id";
+        var result = await conn.ExecuteAsync(sql, new { Id = id });
+        return result > 0;
+    }
+}

@@ -1,0 +1,146 @@
+﻿using System.Data.SQLite;
+using System.IO;
+
+namespace CanteenProcurementSystem.DAL;
+
+public class DatabaseHelper
+{
+    private const string DbFileName = "canteen_procurement.db";
+
+    public static string GetConnectionString()
+    {
+        var dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, DbFileName);
+        return $"Data Source={dbPath};Version=3;";
+    }
+
+    public static SQLiteConnection GetConnection()
+    {
+        return new SQLiteConnection(GetConnectionString());
+    }
+
+    public static void InitializeDatabase()
+    {
+        var dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, DbFileName);
+
+        if (!File.Exists(dbPath))
+        {
+            SQLiteConnection.CreateFile(dbPath);
+            CreateTables();
+            InsertInitialData();
+        }
+    }
+
+    private static void CreateTables()
+    {
+        using (var conn = GetConnection())
+        {
+            conn.Open();
+
+            var createTablesSql = @"
+                CREATE TABLE categories (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name VARCHAR(50) NOT NULL,
+                    code VARCHAR(20) NOT NULL UNIQUE,
+                    ratio DECIMAL(5,4) NOT NULL,
+                    frequency_days INTEGER NOT NULL DEFAULT 1,
+                    sort INTEGER NOT NULL DEFAULT 0,
+                    status TINYINT NOT NULL DEFAULT 1,
+                    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+                );
+
+                CREATE TABLE products (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name VARCHAR(100) NOT NULL,
+                    category_code VARCHAR(20) NOT NULL,
+                    price DECIMAL(10,2) NOT NULL,
+                    unit VARCHAR(20) NOT NULL,
+                    min_interval_days INTEGER NOT NULL DEFAULT 2,
+                    remark TEXT,
+                    status TINYINT NOT NULL DEFAULT 1,
+                    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (category_code) REFERENCES categories(code)
+                );
+
+                CREATE TABLE procurement_tasks (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    year_month VARCHAR(6) NOT NULL,
+                    total_budget DECIMAL(12,2) NOT NULL,
+                    float_rate DECIMAL(5,4) NOT NULL DEFAULT 0.1,
+                    status VARCHAR(20) NOT NULL DEFAULT 'draft',
+                    generated_at DATETIME,
+                    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+                );
+
+                CREATE TABLE task_category_budgets (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    task_id INTEGER NOT NULL,
+                    category_code VARCHAR(20) NOT NULL,
+                    ratio DECIMAL(5,4) NOT NULL,
+                    budget DECIMAL(12,2) NOT NULL,
+                    frequency_days INTEGER NOT NULL,
+                    occurrence_count INTEGER NOT NULL,
+                    daily_budget DECIMAL(12,2) NOT NULL,
+                    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (task_id) REFERENCES procurement_tasks(id),
+                    FOREIGN KEY (category_code) REFERENCES categories(code)
+                );
+
+                CREATE TABLE procurement_details (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    task_id INTEGER NOT NULL,
+                    date DATE NOT NULL,
+                    product_id INTEGER NOT NULL,
+                    category_code VARCHAR(20) NOT NULL,
+                    price DECIMAL(10,2) NOT NULL,
+                    quantity DECIMAL(10,3) NOT NULL,
+                    amount DECIMAL(12,2) NOT NULL,
+                    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (task_id) REFERENCES procurement_tasks(id),
+                    FOREIGN KEY (product_id) REFERENCES products(id),
+                    FOREIGN KEY (category_code) REFERENCES categories(code)
+                );
+
+                CREATE TABLE system_configs (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    config_key VARCHAR(50) NOT NULL UNIQUE,
+                    config_value TEXT NOT NULL,
+                    description TEXT,
+                    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+                );
+            ";
+
+            using (var cmd = new SQLiteCommand(createTablesSql, conn))
+            {
+                cmd.ExecuteNonQuery();
+            }
+        }
+    }
+
+    private static void InsertInitialData()
+    {
+        using (var conn = GetConnection())
+        {
+            conn.Open();
+
+            var insertCategoriesSql = @"
+                INSERT INTO categories (name, code, ratio, frequency_days, sort, status) 
+                VALUES 
+                    ('蔬菜类', 'vegetable', 0.4500, 1, 1, 1),
+                    ('肉类', 'meat', 0.3000, 1, 2, 1),
+                    ('蛋类', 'egg', 0.0500, 2, 3, 1),
+                    ('食用油', 'oil', 0.0480, 7, 4, 1),
+                    ('米', 'rice', 0.1040, 5, 5, 1),
+                    ('挂面粉条', 'noodle', 0.0360, 6, 6, 1),
+                    ('调味品', 'seasoning', 0.0120, 3, 7, 1);
+            ";
+
+            using (var cmd = new SQLiteCommand(insertCategoriesSql, conn))
+            {
+                cmd.ExecuteNonQuery();
+            }
+        }
+    }
+}

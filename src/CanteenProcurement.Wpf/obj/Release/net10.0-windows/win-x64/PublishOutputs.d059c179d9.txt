@@ -1,0 +1,5 @@
+e:\HNYY\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\publish\CanteenProcurement.Wpf.pdb
+e:\HNYY\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\publish\appsettings.json
+e:\HNYY\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\publish\CanteenProcurement.Core.pdb
+e:\HNYY\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\publish\CanteenProcurement.Application.pdb
+e:\HNYY\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\publish\CanteenProcurement.Wpf.exe

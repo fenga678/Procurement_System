@@ -1,0 +1,47 @@
+﻿using System.Windows;
+using OfficeOpenXml;
+using CanteenProcurementSystem.DAL;
+using CanteenProcurementSystem.ViewModels;
+
+namespace CanteenProcurementSystem;
+
+public partial class App : Application
+{
+    private ProductManagementViewModel? _productManagementViewModel;
+    private CategoryConfigViewModel? _categoryConfigViewModel;
+    private ProcurementTaskViewModel? _procurementTaskViewModel;
+    private ProcurementPlanViewModel? _procurementPlanViewModel;
+    private MainViewModel? _mainViewModel;
+
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+        
+        ExcelPackage.License.SetNonCommercialPersonal("CanteenProcurementSystem");
+        DatabaseHelper.InitializeDatabase();
+        
+        InitializeViewModels();
+        
+        var mainWindow = new MainWindow(
+            _mainViewModel!,
+            _productManagementViewModel!,
+            _categoryConfigViewModel!,
+            _procurementTaskViewModel!,
+            _procurementPlanViewModel!);
+        
+        mainWindow.Show();
+    }
+
+    private void InitializeViewModels()
+    {
+        _productManagementViewModel = new ProductManagementViewModel();
+        _categoryConfigViewModel = new CategoryConfigViewModel();
+        _procurementTaskViewModel = new ProcurementTaskViewModel();
+        _procurementPlanViewModel = new ProcurementPlanViewModel();
+        _mainViewModel = new MainViewModel(
+            _productManagementViewModel,
+            _categoryConfigViewModel,
+            _procurementTaskViewModel,
+            _procurementPlanViewModel);
+    }
+}

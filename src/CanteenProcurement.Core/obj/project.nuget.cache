@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "J8CskdNugh0=",
+  "success": true,
+  "projectFilePath": "e:\\HNYY\\src\\CanteenProcurement.Core\\CanteenProcurement.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.5\\microsoft.entityframeworkcore.10.0.5.nupkg.sha512",
+    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\10.0.5\\microsoft.entityframeworkcore.abstractions.10.0.5.nupkg.sha512",
+    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\10.0.5\\microsoft.entityframeworkcore.analyzers.10.0.5.nupkg.sha512",
+    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\10.0.5\\microsoft.extensions.caching.abstractions.10.0.5.nupkg.sha512",
+    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.extensions.caching.memory\\10.0.5\\microsoft.extensions.caching.memory.10.0.5.nupkg.sha512",
+    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\10.0.5\\microsoft.extensions.dependencyinjection.10.0.5.nupkg.sha512",
+    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.5\\microsoft.extensions.dependencyinjection.abstractions.10.0.5.nupkg.sha512",
+    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.extensions.logging\\10.0.5\\microsoft.extensions.logging.10.0.5.nupkg.sha512",
+    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.5\\microsoft.extensions.logging.abstractions.10.0.5.nupkg.sha512",
+    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.extensions.options\\10.0.5\\microsoft.extensions.options.10.0.5.nupkg.sha512",
+    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.5\\microsoft.extensions.primitives.10.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}

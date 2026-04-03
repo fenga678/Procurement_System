@@ -1,0 +1,14 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:effects="clr-namespace:System.Windows.Media.Effects;assembly=PresentationCore">
+    <effects:DropShadowEffect x:Key="Shadow.Card"
+                              Color="#220F2940"
+                              ShadowDepth="4"
+                              BlurRadius="18"
+                              Opacity="0.25" />
+    <effects:DropShadowEffect x:Key="Shadow.Float"
+                              Color="#2A0F2940"
+                              ShadowDepth="8"
+                              BlurRadius="24"
+                              Opacity="0.28" />
+</ResourceDictionary>

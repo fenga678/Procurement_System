@@ -1,0 +1,109 @@
+<Window x:Class="CanteenProcurement.Wpf.Dialogs.WebImportDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Web 导入"
+        Width="720"
+        Height="700"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Style="{StaticResource AppWindowStyle}">
+    <Border Style="{StaticResource CardStyle}" Margin="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- 标题 -->
+            <TextBlock Grid.Row="0" Text="从 Excel 粘贴数据" Style="{StaticResource DialogTitleStyle}" />
+
+            <!-- 提示信息 -->
+            <Border Grid.Row="1" Background="#FEF3C7" Padding="12,8" Margin="0,12,0,0" CornerRadius="8">
+                <StackPanel>
+                    <TextBlock Text="按以下顺序制作表格并粘贴进来：" FontWeight="SemiBold" Foreground="#92400E" />
+                    <TextBlock Text="商品名称、分类（务必与分类名称一致）、单价、单位、最小间隔（天）" Foreground="#92400E" Margin="0,4,0,0" TextWrapping="Wrap" />
+                    <TextBlock Text="支持制表符、空格、逗号等分隔符自动识别" Foreground="#92400E" Margin="0,4,0,0" FontSize="12" Opacity="0.8" />
+                </StackPanel>
+            </Border>
+
+            <!-- 输入区域 -->
+            <TextBox Grid.Row="2" x:Name="InputTextBox"
+                     Margin="0,12,0,0"
+                     MinHeight="180"
+                     AcceptsReturn="True"
+                     AcceptsTab="True"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"
+                     TextWrapping="NoWrap"
+                     FontFamily="Consolas, Microsoft YaHei UI"
+                     FontSize="13"
+                     Padding="12"
+                     VerticalContentAlignment="Top"
+                     TextChanged="InputTextBox_TextChanged" />
+
+            <!-- 预览区域 -->
+            <StackPanel Grid.Row="3" Margin="0,12,0,0">
+                <TextBlock Text="数据预览（前5条）：" FontWeight="SemiBold" Foreground="#4B5563" />
+                <DataGrid x:Name="PreviewDataGrid"
+                          Margin="0,8,0,0"
+                          MaxHeight="160"
+                          IsReadOnly="True"
+                          AutoGenerateColumns="False"
+                          HeadersVisibility="Column"
+                          GridLinesVisibility="Horizontal"
+                          FontSize="12"
+                          RowHeight="20"
+                          VerticalContentAlignment="Center" 
+                          Padding="0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="商品名称" Binding="{Binding Name}" Width="135">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="分类" Binding="{Binding CategoryName}" Width="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="单价" Binding="{Binding Price}" Width="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="单位" Binding="{Binding Unit}" Width="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="间隔(天)" Binding="{Binding MinIntervalDays}" Width="*">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBlock x:Name="PreviewCountText" Foreground="#6B7280" FontSize="12" Margin="0,4,0,0" />
+            </StackPanel>
+
+            <!-- 按钮 -->
+            <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,0">
+                <Button Content="取消" Style="{StaticResource SecondaryButtonStyle}" Width="88" Margin="0,0,8,0" Click="CancelButton_Click" />
+                <Button Content="确认导入" Style="{StaticResource PrimaryButtonStyle}" Width="88" Click="ConfirmButton_Click" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
