@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CanteenProcurement.Core.Entities;
-using Microsoft.Extensions.Logging;
 
 namespace CanteenProcurement.Core.Algorithms
 {
@@ -13,7 +12,6 @@ namespace CanteenProcurement.Core.Algorithms
     public class FrequencyBasedScheduler : ICategorySchedulingStrategy
     {
         private readonly int _frequencyDays;
-        private readonly ILogger<FrequencyBasedScheduler>? _logger;
 
         public FrequencyBasedScheduler(int frequencyDays)
         {

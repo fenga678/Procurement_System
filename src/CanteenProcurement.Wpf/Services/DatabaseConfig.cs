@@ -1,10 +1,8 @@
 using System;
 using System.Data.Common;
-using System.IO;
 using System.Threading.Tasks;
 using CanteenProcurement.Core.Interfaces;
 using CanteenProcurement.Wpf.Providers;
-using Microsoft.Extensions.Configuration;
 
 namespace CanteenProcurement.Wpf.Services
 {

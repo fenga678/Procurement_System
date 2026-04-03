@@ -54,7 +54,7 @@ namespace CanteenProcurement.Core.Algorithms
                 _ruleEngine.RegisterRule(new MinIntervalRule());
                 _ruleEngine.RegisterRule(new CategoryBudgetRule());
                 _ruleEngine.RegisterRule(new TotalBudgetRule(totalBudget));
-                _ruleEngine.RegisterRule(new RandomFlucuationRule());
+                _ruleEngine.RegisterRule(new RandomFluctuationRule());
                 _ruleEngine.RegisterRule(new BudgetDistributionRule());
             }
         }
@@ -66,11 +66,22 @@ namespace CanteenProcurement.Core.Algorithms
         public async Task<ScheduleResult> ExecuteAsync(ProcurementTask task)
         {
             var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            _logger.LogInformation("开始执行采购计划生成: TaskId={TaskId}, YearMonth={YearMonth}",
-                task.Id, task.YearMonth);
 
             try
             {
+                if (task == null)
+                {
+                    return new ScheduleResult(false, "任务不能为空。");
+                }
+
+                _logger.LogInformation("开始执行采购计划生成: TaskId={TaskId}, YearMonth={YearMonth}",
+                    task.Id, task.YearMonth);
+
+                if (task.TotalBudget <= 0)
+                {
+                    return new ScheduleResult(false, "任务总预算必须大于 0。");
+                }
+
                 // Step 1: 预算拆分
                 var splitResult = await SplitBudgetAsync(task);
                 if (!splitResult.IsValid)
@@ -300,6 +311,12 @@ namespace CanteenProcurement.Core.Algorithms
 
             foreach (var item in schedule)
             {
+                if (item.Product == null)
+                {
+                    errors.Add("存在未关联商品的调度项。");
+                    continue;
+                }
+
                 foreach (var rule in _ruleEngine.GetRules())
                 {
                     var result = rule.Validate(item, context);

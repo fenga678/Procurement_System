@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Threading.Tasks;
 using CanteenProcurement.Core.Interfaces;
 
@@ -51,7 +50,7 @@ namespace CanteenProcurement.Wpf.Services
 
         public async Task<int> CreateProductAsync(ProductRecord record)
         {
-            EnsureValidPrice(record.Price);
+            ValidateProductRecord(record);
 
             await using var conn = await DatabaseConfig.CreateAndOpenConnectionAsync();
             await using var tx = await conn.BeginTransactionAsync();
@@ -84,7 +83,7 @@ namespace CanteenProcurement.Wpf.Services
 
         public async Task<int> UpdateProductAsync(ProductRecord record)
         {
-            EnsureValidPrice(record.Price);
+            ValidateProductRecord(record);
 
             await using var conn = await DatabaseConfig.CreateAndOpenConnectionAsync();
             await using var tx = await conn.BeginTransactionAsync();
@@ -178,6 +177,36 @@ namespace CanteenProcurement.Wpf.Services
                 await tx.RollbackAsync();
                 throw;
             }
+        }
+
+        private static void ValidateProductRecord(ProductRecord record)
+        {
+            if (record == null)
+            {
+                throw new ArgumentNullException(nameof(record));
+            }
+
+            if (string.IsNullOrWhiteSpace(record.Name))
+            {
+                throw new InvalidOperationException("商品名称不能为空。");
+            }
+
+            if (string.IsNullOrWhiteSpace(record.CategoryCode))
+            {
+                throw new InvalidOperationException("商品所属分类不能为空。");
+            }
+
+            if (string.IsNullOrWhiteSpace(record.Unit))
+            {
+                throw new InvalidOperationException("商品单位不能为空。");
+            }
+
+            if (record.MinIntervalDays <= 0)
+            {
+                throw new InvalidOperationException("最小间隔天数必须大于 0。");
+            }
+
+            EnsureValidPrice(record.Price);
         }
 
         private static void EnsureValidPrice(decimal price)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CanteenProcurement.Core.Interfaces;
 using MySql.Data.MySqlClient;
@@ -48,7 +49,8 @@ namespace CanteenProcurement.Wpf.Providers
         public async Task<bool> HasColumnAsync(DbConnection conn, string tableName, string columnName)
         {
             // MySQL 不支持在 SHOW COLUMNS 中使用参数替换表名，必须使用反引号引用
-            var sql = $"SHOW COLUMNS FROM `{tableName}` WHERE Field = @column";
+            var safeTableName = QuoteTableName(tableName);
+            var sql = $"SHOW COLUMNS FROM {safeTableName} WHERE Field = @column";
             await using var cmd = new MySqlCommand(sql, (MySqlConnection)conn);
             cmd.Parameters.AddWithValue("@column", columnName);
             await using var reader = await cmd.ExecuteReaderAsync();
@@ -64,7 +66,8 @@ namespace CanteenProcurement.Wpf.Providers
                 paramNames.Add($"@p{i}");
             }
             var placeholders = string.Join(",", paramNames);
-            var sql = $"SHOW COLUMNS FROM `{tableName}` WHERE Field IN ({placeholders})";
+            var safeTableName = QuoteTableName(tableName);
+            var sql = $"SHOW COLUMNS FROM {safeTableName} WHERE Field IN ({placeholders})";
             await using var cmd = new MySqlCommand(sql, (MySqlConnection)conn);
             for (int i = 0; i < columnNames.Length; i++)
             {
@@ -106,5 +109,16 @@ namespace CanteenProcurement.Wpf.Providers
         {
             return $"`{identifier}`";
         }
+
+        private static string QuoteTableName(string tableName)
+        {
+            if (string.IsNullOrWhiteSpace(tableName) || !Regex.IsMatch(tableName, @"^[A-Za-z0-9_]+$"))
+            {
+                throw new ArgumentException("表名包含非法字符。", nameof(tableName));
+            }
+
+            return $"`{tableName}`";
+        }
+
     }
 }

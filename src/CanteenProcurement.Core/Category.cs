@@ -10,75 +10,48 @@ namespace CanteenProcurement.Core.Entities
     [Table("categories")]
     public class Category
     {
-        /// <summary>
-        /// 主键ID
-        /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        /// <summary>
-        /// 分类名称
-        /// </summary>
         [Required]
         [StringLength(50)]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
-        /// <summary>
-        /// 分类编码
-        /// </summary>
         [Required]
         [StringLength(20)]
-        public string Code { get; set; }
+        public string Code { get; set; } = string.Empty;
 
         /// <summary>
         /// 预算占比（如0.45表示45%）
         /// </summary>
         [Required]
         [Column(TypeName = "DECIMAL(5,4)")]
+        [Range(typeof(decimal), "0", "1")]
         public decimal Ratio { get; set; }
 
-        /// <summary>
-        /// 出现频率（几天一次）
-        /// </summary>
         [Required]
+        [Range(1, int.MaxValue)]
         public int FrequencyDays { get; set; } = 1;
 
-        /// <summary>
-        /// 每日最小采购品类数
-        /// </summary>
         [Required]
         [Column("daily_min_items")]
+        [Range(1, int.MaxValue)]
         public int DailyMinItems { get; set; } = 1;
 
-        /// <summary>
-        /// 每日最大采购品类数
-        /// </summary>
         [Required]
         [Column("daily_max_items")]
+        [Range(1, int.MaxValue)]
         public int DailyMaxItems { get; set; } = 1;
 
-        /// <summary>
-        /// 排序号
-        /// </summary>
         [Required]
-        public int Sort { get; set; } = 0;
+        public int Sort { get; set; }
 
-
-        /// <summary>
-        /// 状态（1启用，0禁用）
-        /// </summary>
         [Required]
         public bool Status { get; set; } = true;
 
-        /// <summary>
-        /// 创建时间
-        /// </summary>
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        /// <summary>
-        /// 更新时间
-        /// </summary>
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
     }
 }
