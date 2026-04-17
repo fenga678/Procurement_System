@@ -26,7 +26,6 @@ E:\HNYY3\src\CanteenProcurement.Core\obj\Release\net10.0\CanteenProcurement.Core
 E:\HNYY3\src\CanteenProcurement.Core\obj\Release\net10.0\ref\CanteenProcurement.Core.dll
 e:\HNYY\src\CanteenProcurement.Core\bin\Release\net10.0\CanteenProcurement.Core.deps.json
 e:\HNYY\src\CanteenProcurement.Core\bin\Release\net10.0\CanteenProcurement.Core.dll
-e:\HNYY\src\CanteenProcurement.Core\bin\Release\net10.0\CanteenProcurement.Core.pdb
 e:\HNYY\src\CanteenProcurement.Core\obj\Release\net10.0\CanteenProcurement.Core.csproj.AssemblyReference.cache
 e:\HNYY\src\CanteenProcurement.Core\obj\Release\net10.0\CanteenProcurement.Core.GeneratedMSBuildEditorConfig.editorconfig
 e:\HNYY\src\CanteenProcurement.Core\obj\Release\net10.0\CanteenProcurement.Core.AssemblyInfoInputs.cache
@@ -34,5 +33,4 @@ e:\HNYY\src\CanteenProcurement.Core\obj\Release\net10.0\CanteenProcurement.Core.
 e:\HNYY\src\CanteenProcurement.Core\obj\Release\net10.0\CanteenProcurement.Core.csproj.CoreCompileInputs.cache
 e:\HNYY\src\CanteenProcurement.Core\obj\Release\net10.0\CanteenProcurement.Core.dll
 e:\HNYY\src\CanteenProcurement.Core\obj\Release\net10.0\refint\CanteenProcurement.Core.dll
-e:\HNYY\src\CanteenProcurement.Core\obj\Release\net10.0\CanteenProcurement.Core.pdb
 e:\HNYY\src\CanteenProcurement.Core\obj\Release\net10.0\ref\CanteenProcurement.Core.dll

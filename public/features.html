@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>功能介绍 - 食堂物料预采购管理系统</title>
+  <meta name="description" content="详细了解食堂物料预采购管理系统的核心功能：智能预算拆分、三级频率调度、规则引擎、Excel导出等。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- 导航栏 -->
+<nav class="navbar">
+  <a href="index.html" class="nav-brand">
+    <img src="images/logo.png" alt="Logo" style="height:32px;">
+    食堂物料预采购管理系统
+  </a>
+  <button class="nav-toggle" aria-label="菜单">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">首页</a></li>
+    <li><a href="features.html" class="active">功能介绍</a></li>
+    <li><a href="guide.html">操作指南</a></li>
+    <li><a href="pricing.html">价格与注册</a></li>
+    <li><a href="contact.html">联系我们</a></li>
+  </ul>
+</nav>
+
+<!-- 页面顶栏 -->
+<section class="page-header">
+  <h1>功能介绍</h1>
+  <p>全面了解系统的核心功能模块与技术特性</p>
+</section>
+
+<!-- 功能模块总览 -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <h2>四大功能模块</h2>
+      <p>覆盖从基础数据维护到采购计划生成的完整业务流程</p>
+    </div>
+
+    <!-- 模块1：分类管理 -->
+    <div class="card" style="margin-bottom:24px;">
+      <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <div class="card-icon" style="background:#eff6ff;color:#1d4ed8;flex-shrink:0;">&#128193;</div>
+        <div style="flex:1;min-width:240px;">
+          <h3 style="color:#1e3a5f;margin-bottom:8px;">分类管理</h3>
+          <p style="color:#64748b;font-size:15px;margin-bottom:12px;">维护商品分类信息，是采购算法的基础配置。系统预置7大分类，支持灵活调整。</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span style="background:#eff6ff;color:#1d4ed8;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">分类名称与编码</span>
+            <span style="background:#eff6ff;color:#1d4ed8;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">预算占比设置</span>
+            <span style="background:#eff6ff;color:#1d4ed8;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">采购频率配置</span>
+            <span style="background:#eff6ff;color:#1d4ed8;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">每日品类数范围</span>
+            <span style="background:#eff6ff;color:#1d4ed8;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">启用/停用控制</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 模块2：商品管理 -->
+    <div class="card" style="margin-bottom:24px;">
+      <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <div class="card-icon" style="background:#f0fdf4;color:#16a34a;flex-shrink:0;">&#128230;</div>
+        <div style="flex:1;min-width:240px;">
+          <h3 style="color:#1e3a5f;margin-bottom:8px;">商品管理</h3>
+          <p style="color:#64748b;font-size:15px;margin-bottom:12px;">维护商品基础信息，支持手动录入与Web网页数据批量导入，是采购计划的基本单元。</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span style="background:#f0fdf4;color:#16a34a;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">商品信息维护</span>
+            <span style="background:#f0fdf4;color:#16a34a;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">分类筛选搜索</span>
+            <span style="background:#f0fdf4;color:#16a34a;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">Web网页数据导入</span>
+            <span style="background:#f0fdf4;color:#16a34a;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">最小间隔天数</span>
+            <span style="background:#f0fdf4;color:#16a34a;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">启用/停用控制</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 模块3：任务管理 -->
+    <div class="card" style="margin-bottom:24px;">
+      <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <div class="card-icon" style="background:#fefce8;color:#ca8a04;flex-shrink:0;">&#9889;</div>
+        <div style="flex:1;min-width:240px;">
+          <h3 style="color:#1e3a5f;margin-bottom:8px;">任务管理（核心）</h3>
+          <p style="color:#64748b;font-size:15px;margin-bottom:12px;">系统的核心模块，创建月度采购任务后，一键智能生成覆盖全月的每日采购计划。</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span style="background:#fefce8;color:#ca8a04;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">月度预算输入</span>
+            <span style="background:#fefce8;color:#ca8a04;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">智能计划生成</span>
+            <span style="background:#fefce8;color:#ca8a04;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">随机波动率设置</span>
+            <span style="background:#fefce8;color:#ca8a04;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">分类固定金额</span>
+            <span style="background:#fefce8;color:#ca8a04;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">明细查看与筛选</span>
+            <span style="background:#fefce8;color:#ca8a04;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">Excel一键导出</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 模块4：系统设置 -->
+    <div class="card">
+      <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <div class="card-icon" style="background:#faf5ff;color:#9333ea;flex-shrink:0;">&#128295;</div>
+        <div style="flex:1;min-width:240px;">
+          <h3 style="color:#1e3a5f;margin-bottom:8px;">系统设置</h3>
+          <p style="color:#64748b;font-size:15px;margin-bottom:12px;">软件授权管理与数据库连接配置，支持 SQLite 零配置和 MySQL 企业级部署。</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span style="background:#faf5ff;color:#9333ea;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">授权状态查看</span>
+            <span style="background:#faf5ff;color:#9333ea;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">机器码与注册</span>
+            <span style="background:#faf5ff;color:#9333ea;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">SQLite / MySQL 切换</span>
+            <span style="background:#faf5ff;color:#9333ea;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500;">连接测试</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 智能算法详解 -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>智能算法引擎</h2>
+      <p>科学的预算拆分与调度策略，确保采购计划的合理性与可执行性</p>
+    </div>
+
+    <!-- 预算拆分 -->
+    <div style="margin-bottom:48px;">
+      <h3 style="font-size:20px;color:#1e3a5f;margin-bottom:16px;text-align:center;">预算拆分比例</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:800px;margin:0 auto;">
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:20px;text-align:center;">
+          <div style="font-size:32px;font-weight:800;color:#1d4ed8;">45%</div>
+          <div style="font-size:14px;color:#64748b;margin-top:4px;">蔬菜类</div>
+        </div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:20px;text-align:center;">
+          <div style="font-size:32px;font-weight:800;color:#2563eb;">30%</div>
+          <div style="font-size:14px;color:#64748b;margin-top:4px;">肉类</div>
+        </div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:20px;text-align:center;">
+          <div style="font-size:32px;font-weight:800;color:#3b82f6;">10.4%</div>
+          <div style="font-size:14px;color:#64748b;margin-top:4px;">米</div>
+        </div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:20px;text-align:center;">
+          <div style="font-size:32px;font-weight:800;color:#60a5fa;">5%</div>
+          <div style="font-size:14px;color:#64748b;margin-top:4px;">蛋类</div>
+        </div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:20px;text-align:center;">
+          <div style="font-size:32px;font-weight:800;color:#93c5fd;">4.8%</div>
+          <div style="font-size:14px;color:#64748b;margin-top:4px;">食用油</div>
+        </div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:20px;text-align:center;">
+          <div style="font-size:32px;font-weight:800;color:#bfdbfe;">3.6%</div>
+          <div style="font-size:14px;color:#64748b;margin-top:4px;">挂面粉条</div>
+        </div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:20px;text-align:center;">
+          <div style="font-size:32px;font-weight:800;color:#dbeafe;">1.2%</div>
+          <div style="font-size:14px;color:#64748b;margin-top:4px;">调味品</div>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:16px;font-size:14px;color:#94a3b8;">* 以上比例均为默认值，支持根据实际情况灵活调整</p>
+    </div>
+
+    <!-- 调度策略 -->
+    <h3 style="font-size:20px;color:#1e3a5f;margin-bottom:24px;text-align:center;">三级频率调度策略</h3>
+    <div class="cards">
+      <div class="card" style="border-left:4px solid #dc2626;">
+        <h3 style="font-size:17px;color:#1e3a5f;">高频商品</h3>
+        <p style="font-size:15px;color:#64748b;margin-bottom:8px;"><strong>代表品类：</strong>蔬菜、肉类</p>
+        <p style="font-size:15px;color:#64748b;margin-bottom:8px;"><strong>采购频率：</strong>每日采购</p>
+        <p style="font-size:15px;color:#64748b;"><strong>调度特点：</strong>均匀分布，确保每天都有采购，商品轮换避免重复。</p>
+      </div>
+      <div class="card" style="border-left:4px solid #f59e0b;">
+        <h3 style="font-size:17px;color:#1e3a5f;">中频商品</h3>
+        <p style="font-size:15px;color:#64748b;margin-bottom:8px;"><strong>代表品类：</strong>蛋类</p>
+        <p style="font-size:15px;color:#64748b;margin-bottom:8px;"><strong>采购频率：</strong>每2天采购</p>
+        <p style="font-size:15px;color:#64748b;"><strong>调度特点：</strong>周期性调度，保证供应连续性。</p>
+      </div>
+      <div class="card" style="border-left:4px solid #22c55e;">
+        <h3 style="font-size:17px;color:#1e3a5f;">低频商品</h3>
+        <p style="font-size:15px;color:#64748b;margin-bottom:8px;"><strong>代表品类：</strong>食用油、米、挂面粉条</p>
+        <p style="font-size:15px;color:#64748b;margin-bottom:8px;"><strong>采购频率：</strong>5-7天采购一次</p>
+        <p style="font-size:15px;color:#64748b;"><strong>调度特点：</strong>按预算平均分配，避免频繁采购，降低成本。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 约束规则 -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <h2>业务约束规则</h2>
+      <p>多重规则保障采购计划的科学性与合规性</p>
+    </div>
+    <div class="cards">
+      <div class="card" style="text-align:center;">
+        <div style="font-size:36px;margin-bottom:12px;">&#128737;</div>
+        <h3 style="font-size:17px;color:#1e3a5f;">同日不重复</h3>
+        <p style="font-size:15px;color:#64748b;">同一商品在同一天只能出现一次，确保采购多样性。</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:36px;margin-bottom:12px;">&#128197;</div>
+        <h3 style="font-size:17px;color:#1e3a5f;">最小间隔控制</h3>
+        <p style="font-size:15px;color:#64748b;">同一商品两次采购之间必须满足最小间隔天数，避免连续重复。</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:36px;margin-bottom:12px;">&#128178;</div>
+        <h3 style="font-size:17px;color:#1e3a5f;">分类预算约束</h3>
+        <p style="font-size:15px;color:#64748b;">各分类实际支出严格控制在分配的预算范围内，精确到1元以内。</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:36px;margin-bottom:12px;">&#128200;</div>
+        <h3 style="font-size:17px;color:#1e3a5f;">价格有效性校验</h3>
+        <p style="font-size:15px;color:#64748b;">自动验证单价、数量、金额的正确性，确保数据准确无误。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 技术栈 -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>技术架构</h2>
+      <p>基于成熟稳定的企业级技术栈，保障系统性能与可靠性</p>
+    </div>
+    <div class="cards">
+      <div class="card" style="text-align:center;">
+        <div style="font-size:28px;margin-bottom:12px;">&#128187;</div>
+        <h3 style="font-size:16px;color:#1e3a5f;">C# 12 + .NET 10</h3>
+        <p style="font-size:14px;color:#64748b;">最新一代 .NET 框架，高性能运行时</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:28px;margin-bottom:12px;">&#127912;</div>
+        <h3 style="font-size:16px;color:#1e3a5f;">WPF + MVVM</h3>
+        <p style="font-size:14px;color:#64748b;">现代化桌面UI框架，分层架构设计</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:28px;margin-bottom:12px;">&#128451;</div>
+        <h3 style="font-size:16px;color:#1e3a5f;">SQLite / MySQL</h3>
+        <p style="font-size:14px;color:#64748b;">双数据库支持，EF Core 驱动</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:28px;margin-bottom:12px;">&#9889;</div>
+        <h3 style="font-size:16px;color:#1e3a5f;">自定义算法引擎</h3>
+        <p style="font-size:14px;color:#64748b;">参数化调度算法，支持规则扩展</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="background:linear-gradient(135deg,#1e40af,#2563eb);color:#fff;text-align:center;">
+  <div class="container">
+    <h2 style="font-size:28px;margin-bottom:12px;">了解如何操作？</h2>
+    <p style="font-size:17px;opacity:.9;margin-bottom:32px;">查看详细的操作指南，快速上手系统</p>
+    <a href="guide.html" class="btn" style="background:#fff;color:#1d4ed8;">查看操作指南</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>&copy; 2026 食堂物料预采购管理系统 版权所有</p>
+  <p>基于 C# + WPF + .NET 10 构建 | Windows 10/11 64位</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -64,7 +64,8 @@
                     <controls:ActionButtonGroup.BodyContent>
                         <StackPanel Orientation="Horizontal">
                             <Button Content="新增商品" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,8,0" Click="AddProduct_Click" />
-                            <Button Content="Web导入" Style="{StaticResource AccentButtonStyle}" Click="WebImport_Click" />
+                            <Button Content="Web导入" Style="{StaticResource AccentButtonStyle}" Margin="0,0,8,0" Click="WebImport_Click" />
+                            <Button Content="清空数据" Style="{StaticResource SecondaryButtonStyle}" Click="ClearData_Click" />
                         </StackPanel>
                     </controls:ActionButtonGroup.BodyContent>
                 </controls:ActionButtonGroup>

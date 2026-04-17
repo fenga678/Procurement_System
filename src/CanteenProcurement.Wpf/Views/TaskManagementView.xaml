@@ -49,7 +49,8 @@
                     <controls:ActionButtonGroup.BodyContent>
                         <StackPanel Orientation="Horizontal">
                             <Button Content="新建任务" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,8,0" Click="btnCreateTask_Click" />
-                            <Button Content="导出明细" Style="{StaticResource SecondaryButtonStyle}" Click="btnExportExcel_Click" />
+                            <Button Content="导出明细" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,8,0" Click="btnExportExcel_Click" />
+                            <Button Content="清空数据" Style="{StaticResource SecondaryButtonStyle}" Click="ClearData_Click" />
                         </StackPanel>
                     </controls:ActionButtonGroup.BodyContent>
                 </controls:ActionButtonGroup>

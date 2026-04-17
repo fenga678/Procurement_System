@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using CanteenProcurement.Wpf.Dialogs;
 using CanteenProcurement.Wpf.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 
 namespace CanteenProcurement.Wpf.Views
@@ -15,22 +16,10 @@ namespace CanteenProcurement.Wpf.Views
     {
         public ObservableCollection<ProductItem> Products { get; set; } = new();
         public ObservableCollection<CategoryFilterItem> Categories { get; set; } = new();
-        private int _nextProductId = 7;
+        private int _nextProductId = 1;
+        private readonly ProductDataService _dataService = null!;
+        private readonly CategoryDataService _categoryDataService = null!;
         private bool _isBusy;
-        private readonly CategoryDataService? _categoryDataService;
-
-        private readonly (string Code, string Name)[] _categoryOptions =
-        {
-            ("vegetable", "蔬菜类"),
-            ("meat", "肉类"),
-            ("egg", "蛋类"),
-            ("oil", "食用油"),
-            ("rice", "米"),
-            ("noodle", "挂面粉条"),
-            ("seasoning", "调味品")
-        };
-
-        private readonly ProductDataService? _dataService;
 
         public ProductManagementView()
         {
@@ -38,14 +27,15 @@ namespace CanteenProcurement.Wpf.Views
             DataContext = this;
             try
             {
-                _dataService = new ProductDataService();
-                _categoryDataService = new CategoryDataService(new SchemaCapabilitiesProvider());
+                _dataService = AppHost.Services.GetRequiredService<ProductDataService>();
+                _categoryDataService = AppHost.Services.GetRequiredService<CategoryDataService>();
                 _ = InitializeAsync();
             }
             catch (Exception ex)
             {
-                _dataService = null;
-                AppDialogService.ShowError(null, "数据库", $"初始化数据库连接失败：{ex.Message}\n请检查 appsettings.json 或环境变量 CANTEEN_MYSQL_CONN。");
+                _dataService = null!;
+                _categoryDataService = null!;
+                AppDialogService.ShowError(null, "数据库", $"初始化数据库连接失败：{ex.Message}");
             }
         }
 
@@ -478,7 +468,11 @@ namespace CanteenProcurement.Wpf.Views
             // 如果没有从数据库加载到分类，使用默认选项作为备用
             if (categories.Count == 0)
             {
-                categories = _categoryOptions.ToList();
+                categories = new List<(string, string)>
+                {
+                    ("vegetable", "蔬菜类"), ("meat", "肉类"), ("egg", "蛋类"),
+                    ("oil", "食用油"), ("rice", "米"), ("noodle", "挂面粉条"), ("seasoning", "调味品")
+                };
             }
 
             var dialog = new ProductEditorDialog(existing, categories, _nextProductId)
@@ -525,6 +519,25 @@ namespace CanteenProcurement.Wpf.Views
 
         {
             return Window.GetWindow(this) ?? System.Windows.Application.Current.MainWindow;
+        }
+
+        private async void ClearData_Click(object sender, RoutedEventArgs e)
+        {
+            if (!AppDialogService.Confirm(GetOwnerWindow(), "确认清空", "确认清空所有商品数据吗？\n此操作不可恢复！"))
+                return;
+
+            await AsyncCommand.ExecuteAsync(async () =>
+            {
+                var products = await _dataService.GetProductsAsync();
+                var count = 0;
+                foreach (var prod in products)
+                {
+                    await _dataService.DeleteProductAsync(prod.Id);
+                    count++;
+                }
+                ShellFeedbackService.ShowSuccess($"已清空 {count} 条商品数据。", "清空完成");
+                await LoadFromDatabaseAsync();
+            }, GetOwnerWindow(), "正在清空数据...");
         }
     }
 

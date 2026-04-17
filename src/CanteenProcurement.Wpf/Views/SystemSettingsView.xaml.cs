@@ -3,9 +3,9 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using CanteenProcurement.Core.Interfaces;
-using CanteenProcurement.Wpf.Providers;
+using CanteenProcurement.Wpf.Dialogs;
 using CanteenProcurement.Wpf.Services;
+using Microsoft.Win32;
 
 namespace CanteenProcurement.Wpf.Views
 {
@@ -18,32 +18,24 @@ namespace CanteenProcurement.Wpf.Views
             LoadLicenseInfo();
         }
 
-        /// <summary>
-        /// 加载授权信息
-        /// </summary>
         private void LoadLicenseInfo()
         {
             var license = LicensingService.Instance;
-            
-            // 显示机器码
             MachineCodeText.Text = license.MachineCode;
-            
-            // 显示授权状态
+
             if (license.IsRegistered)
             {
                 LicenseStatusText.Text = license.GetStatusDescription();
                 LicenseStatusText.Foreground = (Brush)FindResource("Brush.Success");
-                
-                // 隐藏试用限制面板
                 TrialLimitsPanel.Visibility = Visibility.Collapsed;
             }
             else
             {
                 LicenseStatusText.Text = "试用版";
                 LicenseStatusText.Foreground = (Brush)FindResource("Brush.Warning");
-                
-                // 显示试用限制
-                TrialLimitsText.Text = license.GetTrialLimitsDescription().Replace("试用版限制：\n", "").Replace("• ", "");
+                TrialLimitsText.Text = license.GetTrialLimitsDescription()
+                    .Replace("试用版限制：\n", string.Empty)
+                    .Replace("•", string.Empty);
             }
         }
 
@@ -55,7 +47,7 @@ namespace CanteenProcurement.Wpf.Views
                 if (!string.IsNullOrWhiteSpace(machineCode))
                 {
                     Clipboard.SetText(machineCode);
-                    ShellFeedbackService.ShowSuccess("机器码已复制到剪贴板，可以分享给管理员获取注册码。", "复制成功");
+                    ShellFeedbackService.ShowSuccess("机器码已复制到剪贴板，可用于获取注册码。", "复制成功");
                 }
             }
             catch (Exception ex)
@@ -67,23 +59,20 @@ namespace CanteenProcurement.Wpf.Views
         private void Register_Click(object sender, RoutedEventArgs e)
         {
             var licenseKey = LicenseKeyText.Text?.Trim();
-            
             if (string.IsNullOrWhiteSpace(licenseKey))
             {
                 AppDialogService.ShowWarning(Window.GetWindow(this), "注册失败", "请输入注册码。");
                 return;
             }
-            
+
             var license = LicensingService.Instance;
             var result = license.ValidateLicenseKey(licenseKey);
-            
+
             if (result.Success)
             {
                 AppDialogService.ShowSuccess(Window.GetWindow(this), "注册成功", result.Message);
                 LoadLicenseInfo();
                 LicenseKeyText.Text = string.Empty;
-                
-                // 通知主窗口更新标题
                 MainWindow.Instance?.UpdateLicenseStatus();
             }
             else
@@ -92,67 +81,16 @@ namespace CanteenProcurement.Wpf.Views
             }
         }
 
-        /// <summary>
-        /// 加载当前配置
-        /// </summary>
         private void LoadCurrentConfiguration()
         {
             try
             {
                 var config = DatabaseConfig.GetConfiguration();
-                
-                // 设置数据库类型
-                if (config.Provider?.ToLowerInvariant() == "mysql")
-                {
-                    RbMySql.IsChecked = true;
-                    MySqlConfigPanel.Visibility = Visibility.Visible;
-                    SqliteConfigPanel.Visibility = Visibility.Collapsed;
-                    DbTypeHint.Text = "MySQL 需要配置服务器连接信息，请确保 MySQL 服务已启动。";
-                }
-                else
-                {
-                    RbSqlite.IsChecked = true;
-                    MySqlConfigPanel.Visibility = Visibility.Collapsed;
-                    SqliteConfigPanel.Visibility = Visibility.Visible;
-                    DbTypeHint.Text = "SQLite 无需额外配置，数据库文件自动创建在程序目录的 data 文件夹中。";
-                }
-
-                // SQLite 配置
-                SqlitePathText.Text = config.Sqlite?.DatabasePath ?? "data/canteen.db";
-
-                // MySQL 配置
-                var mysql = config.MySql ?? new MySqlConfiguration();
-                DbServerText.Text = mysql.Server;
-                DbPortText.Text = mysql.Port.ToString();
-                DbNameText.Text = mysql.Database;
-                DbUserText.Text = mysql.User;
-                DbPasswordBox.Password = mysql.Password;
+                SqlitePathText.Text = config.DatabasePath ?? "data/canteen.db";
             }
-            catch (Exception)
+            catch
             {
-                // 使用默认配置
-                RbSqlite.IsChecked = true;
                 SqlitePathText.Text = "data/canteen.db";
-                DbPortText.Text = "3306";
-            }
-        }
-
-        private void DbType_Changed(object sender, RoutedEventArgs e)
-        {
-            if (RbSqlite == null || RbMySql == null || MySqlConfigPanel == null || SqliteConfigPanel == null)
-                return;
-
-            if (RbSqlite.IsChecked == true)
-            {
-                MySqlConfigPanel.Visibility = Visibility.Collapsed;
-                SqliteConfigPanel.Visibility = Visibility.Visible;
-                DbTypeHint.Text = "SQLite 无需额外配置，数据库文件自动创建在程序目录的 data 文件夹中。";
-            }
-            else
-            {
-                MySqlConfigPanel.Visibility = Visibility.Visible;
-                SqliteConfigPanel.Visibility = Visibility.Collapsed;
-                DbTypeHint.Text = "MySQL 需要配置服务器连接信息，请确保 MySQL 服务已启动。";
             }
         }
 
@@ -161,34 +99,12 @@ namespace CanteenProcurement.Wpf.Views
             ShellFeedbackService.ShowLoading("正在测试数据库连接...");
             try
             {
-                // 创建临时提供者进行测试
-                IDatabaseProvider testProvider;
-                
-                if (RbSqlite.IsChecked == true)
-                {
-                    var dbPath = SqlitePathText.Text?.Trim() ?? "data/canteen.db";
-                    if (!Path.IsPathRooted(dbPath))
-                    {
-                        dbPath = Path.Combine(AppContext.BaseDirectory, dbPath);
-                    }
-                    testProvider = new SqliteProvider(dbPath);
-                }
-                else
-                {
-                    var connStr = BuildMySqlConnectionString();
-                    testProvider = new MySqlProvider(connStr);
-                }
-
-                await using var conn = await testProvider.CreateAndOpenConnectionAsync();
-                
-                ShellFeedbackService.ShowSuccess(
-                    $"数据库连接成功！\n类型: {testProvider.Name}\n{testProvider.GetDisplayConnectionString()}", 
-                    "连接测试通过");
+                await using var conn = await DatabaseConfig.CreateAndOpenConnectionAsync();
+                ShellFeedbackService.ShowSuccess("数据库连接成功。", "连接测试通过");
             }
             catch (Exception ex)
             {
-                AppDialogService.ShowError(Window.GetWindow(this), "连接测试失败", 
-                    $"连接失败：{ex.Message}\n\n请检查配置或网络连接。");
+                AppDialogService.ShowError(Window.GetWindow(this), "连接测试失败", $"连接失败：{ex.Message}\n\n请检查配置或网络连接。");
             }
             finally
             {
@@ -200,37 +116,10 @@ namespace CanteenProcurement.Wpf.Views
         {
             try
             {
-                var providerType = RbSqlite.IsChecked == true ? "Sqlite" : "MySql";
-
-                // 解析端口
-                int port = 3306;
-                if (!string.IsNullOrWhiteSpace(DbPortText.Text) && int.TryParse(DbPortText.Text.Trim(), out var parsedPort))
-                {
-                    port = parsedPort;
-                }
-
-                var mysqlConfig = new MySqlConfiguration
-                {
-                    Server = DbServerText.Text?.Trim() ?? "localhost",
-                    Port = port,
-                    Database = DbNameText.Text?.Trim() ?? "canteen_procurement",
-                    User = DbUserText.Text?.Trim() ?? "root",
-                    Password = DbPasswordBox.Password ?? string.Empty
-                };
-
                 var sqlitePath = SqlitePathText.Text?.Trim() ?? "data/canteen.db";
-
-                // 切换提供者（立即生效）
-                DatabaseConfig.SwitchProvider(providerType, mysqlConfig, sqlitePath);
-                
-                // 保存配置到文件
+                DatabaseConfig.UpdateSqlitePath(sqlitePath);
                 DatabaseConfig.SaveConfiguration();
-
-                var displayInfo = providerType == "Sqlite" 
-                    ? $"SQLite: {sqlitePath}" 
-                    : $"MySQL: {mysqlConfig.Server}:{mysqlConfig.Port} / {mysqlConfig.Database}";
-
-                ShellFeedbackService.ShowSuccess($"数据库配置已保存并立即生效！\n{displayInfo}", "配置保存成功");
+                ShellFeedbackService.ShowSuccess($"数据库配置已保存并立即生效。\nSQLite: {sqlitePath}", "配置保存成功");
             }
             catch (Exception ex)
             {
@@ -238,22 +127,86 @@ namespace CanteenProcurement.Wpf.Views
             }
         }
 
-        private string BuildMySqlConnectionString()
+        private void BackupDb_Click(object sender, RoutedEventArgs e)
         {
-            var server = DbServerText.Text?.Trim() ?? "localhost";
-            var db = DbNameText.Text?.Trim() ?? "canteen_procurement";
-            var user = DbUserText.Text?.Trim() ?? "root";
-            var pwd = DbPasswordBox.Password ?? string.Empty;
-            
-            // 解析端口
-            int port = 3306;
-            if (!string.IsNullOrWhiteSpace(DbPortText.Text) && int.TryParse(DbPortText.Text.Trim(), out var parsedPort))
+            try
             {
-                port = parsedPort;
+                var config = DatabaseConfig.GetConfiguration();
+                var dbPath = config.DatabasePath ?? "data/canteen.db";
+                if (!Path.IsPathRooted(dbPath))
+                {
+                    dbPath = Path.Combine(AppContext.BaseDirectory, dbPath);
+                }
+
+                if (!File.Exists(dbPath))
+                {
+                    AppDialogService.ShowWarning(Window.GetWindow(this), "备份失败", "数据库文件不存在，无法备份。");
+                    return;
+                }
+
+                var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                var defaultFileName = $"canteen_backup_{timestamp}.db";
+                
+                var dialog = new SaveFileDialog
+                {
+                    Filter = "SQLite 数据库 (*.db)|*.db",
+                    FileName = defaultFileName,
+                    Title = "选择备份保存位置"
+                };
+
+                if (dialog.ShowDialog() == true)
+                {
+                    File.Copy(dbPath, dialog.FileName, true);
+                    ShellFeedbackService.ShowSuccess($"数据已备份到：\n{dialog.FileName}", "备份完成");
+                }
             }
-            
-            return $"server={server};port={port};database={db};user={user};password={pwd};" +
-                   "AllowUserVariables=True;TreatTinyAsBoolean=true;ConvertZeroDateTime=True;SslMode=Disabled;CharSet=utf8mb4;";
+            catch (Exception ex)
+            {
+                AppDialogService.ShowError(Window.GetWindow(this), "备份失败", $"备份失败：{ex.Message}");
+            }
+        }
+
+        private void RestoreDb_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var dialog = new OpenFileDialog
+                {
+                    Filter = "SQLite 数据库 (*.db)|*.db",
+                    Title = "选择备份文件进行恢复"
+                };
+
+                if (dialog.ShowDialog() != true) return;
+
+                if (!AppDialogService.Confirm(Window.GetWindow(this), "确认恢复",
+                    "恢复数据将覆盖当前数据库，所有未保存的更改将丢失。\n\n确定要继续吗？"))
+                {
+                    return;
+                }
+
+                var config = DatabaseConfig.GetConfiguration();
+                var dbPath = config.DatabasePath ?? "data/canteen.db";
+                if (!Path.IsPathRooted(dbPath))
+                {
+                    dbPath = Path.Combine(AppContext.BaseDirectory, dbPath);
+                }
+
+                // 确保目标目录存在
+                var dir = Path.GetDirectoryName(dbPath);
+                if (!string.IsNullOrWhiteSpace(dir) && !Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+
+                File.Copy(dialog.FileName, dbPath, true);
+                
+                AppDialogService.ShowWarning(Window.GetWindow(this), "恢复完成",
+                    "数据已恢复。请重启程序以使更改生效。");
+            }
+            catch (Exception ex)
+            {
+                AppDialogService.ShowError(Window.GetWindow(this), "恢复失败", $"恢复失败：{ex.Message}");
+            }
         }
     }
 }

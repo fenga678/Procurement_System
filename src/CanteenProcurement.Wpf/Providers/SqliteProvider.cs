@@ -194,7 +194,7 @@ CREATE TABLE IF NOT EXISTS products (
 -- 采购任务表
 CREATE TABLE IF NOT EXISTS procurement_tasks (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    year_month TEXT NOT NULL,
+    year_m TEXT NOT NULL,
     total_budget REAL NOT NULL,
     float_rate REAL NOT NULL DEFAULT 0.100,
     status INTEGER NOT NULL DEFAULT 0,
@@ -325,7 +325,7 @@ CREATE INDEX IF NOT EXISTS idx_products_active ON products(is_active);
 CREATE INDEX IF NOT EXISTS idx_products_name ON products(name);
 
 -- 采购任务表索引
-CREATE UNIQUE INDEX IF NOT EXISTS idx_tasks_year_month ON procurement_tasks(year_month);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_tasks_year_m ON procurement_tasks(year_m);
 CREATE INDEX IF NOT EXISTS idx_tasks_status ON procurement_tasks(status);
 CREATE INDEX IF NOT EXISTS idx_tasks_created_at ON procurement_tasks(created_at);
 

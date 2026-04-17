@@ -26,6 +26,7 @@ namespace CanteenProcurement.Core.Entities
         [Required]
         [StringLength(6)]
         [RegularExpression(@"^\d{6}$")]
+        [Column("year_m")]
         public string YearMonth { get; set; } = string.Empty;
 
         [Required]

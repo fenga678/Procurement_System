@@ -1,10 +1,11 @@
-﻿﻿using System;
+﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using CanteenProcurement.Wpf.Controls;
 using CanteenProcurement.Wpf.Services;
 using CanteenProcurement.Wpf.Views;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CanteenProcurement.Wpf
 {
@@ -81,16 +82,16 @@ namespace CanteenProcurement.Wpf
             switch (section)
             {
                 case ShellSection.CategoryManagement:
-                    LoadView(() => new CategoryManagementView());
+                    LoadView(() => AppHost.Services.GetRequiredService<CategoryManagementView>());
                     break;
                 case ShellSection.ProductManagement:
-                    LoadView(() => new ProductManagementView());
+                    LoadView(() => AppHost.Services.GetRequiredService<ProductManagementView>());
                     break;
                 case ShellSection.TaskManagement:
-                    LoadView(() => new TaskManagementView());
+                    LoadView(() => AppHost.Services.GetRequiredService<TaskManagementView>());
                     break;
                 case ShellSection.Settings:
-                    LoadView(() => new SystemSettingsView());
+                    LoadView(() => AppHost.Services.GetRequiredService<SystemSettingsView>());
                     break;
             }
         }

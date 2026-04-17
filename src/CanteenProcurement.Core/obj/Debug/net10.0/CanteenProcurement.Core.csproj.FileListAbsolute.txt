@@ -34,6 +34,7 @@ E:\HNYY\src\CanteenProcurement.Core\obj\Debug\net10.0\CanteenProcurement.Core.Ge
 E:\HNYY\src\CanteenProcurement.Core\obj\Debug\net10.0\CanteenProcurement.Core.AssemblyInfoInputs.cache
 E:\HNYY\src\CanteenProcurement.Core\obj\Debug\net10.0\CanteenProcurement.Core.AssemblyInfo.cs
 E:\HNYY\src\CanteenProcurement.Core\obj\Debug\net10.0\CanteenProcurement.Core.csproj.CoreCompileInputs.cache
+E:\HNYY\src\CanteenProcurement.Core\obj\Debug\net10.0\CanteenProcurement.Core.sourcelink.json
 E:\HNYY\src\CanteenProcurement.Core\obj\Debug\net10.0\CanteenProcurement.Core.dll
 E:\HNYY\src\CanteenProcurement.Core\obj\Debug\net10.0\refint\CanteenProcurement.Core.dll
 E:\HNYY\src\CanteenProcurement.Core\obj\Debug\net10.0\CanteenProcurement.Core.pdb

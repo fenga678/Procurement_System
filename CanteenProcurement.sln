@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CanteenProcurement.Infrastr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CanteenProcurement.Wpf", "src\CanteenProcurement.Wpf\CanteenProcurement.Wpf.csproj", "{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CanteenProcurement.Tests", "tests\CanteenProcurement.Tests\CanteenProcurement.Tests.csproj", "{C2D3E4F5-A6B7-C8D9-E0F1-A2B3C4D5E6F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1C2D3E4-F5A6-B7C8-D9E0-F1A2B3C4D5E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2D3E4F5-A6B7-C8D9-E0F1-A2B3C4D5E6F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2D3E4F5-A6B7-C8D9-E0F1-A2B3C4D5E6F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2D3E4F5-A6B7-C8D9-E0F1-A2B3C4D5E6F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2D3E4F5-A6B7-C8D9-E0F1-A2B3C4D5E6F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

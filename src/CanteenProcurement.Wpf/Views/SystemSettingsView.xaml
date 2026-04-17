@@ -99,91 +99,32 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="16">
                     <StackPanel>
                         <TextBlock Text="数据库配置" Style="{StaticResource SectionTitleStyle}" Margin="0,0,0,16" />
-                        
-                        <!-- 数据库类型选择 -->
-                        <StackPanel Margin="0,0,0,12">
-                            <TextBlock Text="数据库类型" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,8" />
-                            <StackPanel Orientation="Horizontal">
-                                <RadioButton x:Name="RbSqlite" Content="SQLite（推荐）" GroupName="DbType" IsChecked="True"
-                                             VerticalAlignment="Center" Margin="0,0,20,0" Checked="DbType_Changed" />
-                                <RadioButton x:Name="RbMySql" Content="MySQL" GroupName="DbType"
-                                             VerticalAlignment="Center" Checked="DbType_Changed" />
-                            </StackPanel>
-                        </StackPanel>
-                        
-                        <TextBlock x:Name="DbTypeHint" Text="SQLite 无需额外配置，数据库文件自动创建。" 
-                                   Style="{StaticResource HintTextStyle}" Margin="0,0,0,12" FontSize="11" TextWrapping="Wrap" />
 
                         <!-- SQLite 配置 -->
-                        <StackPanel x:Name="SqliteConfigPanel" Visibility="Visible">
+                        <StackPanel>
                             <Border Background="{DynamicResource Brush.Surface}" Padding="12" CornerRadius="6">
                                 <StackPanel>
-                                    <TextBlock Text="SQLite 配置" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,10" />
-                                    
+                                    <TextBlock Text="SQLite 数据库" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,10" />
+
                                     <Label Content="数据库文件路径" Style="{StaticResource DefaultLabelStyle}" FontSize="11" />
                                     <TextBox x:Name="SqlitePathText" Style="{StaticResource DefaultTextBoxStyle}"
                                              Text="data/canteen.db" Margin="0,4,0,0" FontSize="12" />
-                                    
-                                    <TextBlock Text="✓ 零配置：自动创建数据库和表结构"
-                                               Foreground="{DynamicResource Brush.Success}" Margin="0,10,0,0" FontSize="11" />
-                                    <TextBlock Text="✓ 便携性：数据库文件可随程序移动"
-                                               Foreground="{DynamicResource Brush.Success}" Margin="0,4,0,0" FontSize="11" />
-                                    <TextBlock Text="✓ 备份简单：复制 .db 文件即可备份"
-                                               Foreground="{DynamicResource Brush.Success}" Margin="0,4,0,0" FontSize="11" />
                                 </StackPanel>
                             </Border>
                         </StackPanel>
 
-                        <!-- MySQL 配置 -->
-                        <StackPanel x:Name="MySqlConfigPanel" Visibility="Collapsed">
-                            <Border Background="{DynamicResource Brush.Surface}" Padding="12" CornerRadius="6">
-                                <StackPanel>
-                                    <TextBlock Text="MySQL 配置" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,10" />
-                                    
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        
-                                        <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,8,0">
-                                            <Label Content="服务器" Style="{StaticResource DefaultLabelStyle}" FontSize="11" />
-                                            <TextBox x:Name="DbServerText" Style="{StaticResource DefaultTextBoxStyle}"
-                                                     Text="localhost" Margin="0,4,0,0" FontSize="12" />
-                                        </StackPanel>
-                                        
-                                        <StackPanel Grid.Row="0" Grid.Column="1" Width="80">
-                                            <Label Content="端口" Style="{StaticResource DefaultLabelStyle}" FontSize="11" />
-                                            <TextBox x:Name="DbPortText" Style="{StaticResource DefaultTextBoxStyle}"
-                                                     Text="3306" Margin="0,4,0,0" FontSize="12" />
-                                        </StackPanel>
-                                        
-                                        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0">
-                                            <Label Content="数据库名称" Style="{StaticResource DefaultLabelStyle}" FontSize="11" />
-                                            <TextBox x:Name="DbNameText" Style="{StaticResource DefaultTextBoxStyle}"
-                                                     Text="canteen_procurement" Margin="0,4,0,0" FontSize="12" />
-                                        </StackPanel>
-                                        
-                                        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0">
-                                            <Label Content="用户名" Style="{StaticResource DefaultLabelStyle}" FontSize="11" />
-                                            <TextBox x:Name="DbUserText" Style="{StaticResource DefaultTextBoxStyle}"
-                                                     Text="root" Margin="0,4,0,0" FontSize="12" />
-                                        </StackPanel>
-                                        
-                                        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0">
-                                            <Label Content="密码" Style="{StaticResource DefaultLabelStyle}" FontSize="11" />
-                                            <PasswordBox x:Name="DbPasswordBox" Margin="0,4,0,0" FontSize="12" />
-                                        </StackPanel>
-                                    </Grid>
+                        <!-- 数据备份与恢复 -->
+                        <Border Background="{DynamicResource Brush.Surface}" Padding="12" CornerRadius="6" Margin="0,12,0,0">
+                            <StackPanel>
+                                <TextBlock Text="数据备份与恢复" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,10" />
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="备份数据" Style="{StaticResource SecondaryButtonStyle}"
+                                            Width="100" Margin="0,0,8,0" Click="BackupDb_Click" />
+                                    <Button Content="恢复数据" Style="{StaticResource SecondaryButtonStyle}"
+                                            Width="100" Click="RestoreDb_Click" />
                                 </StackPanel>
-                            </Border>
-                        </StackPanel>
+                            </StackPanel>
+                        </Border>
 
                         <!-- 操作按钮 -->
                         <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
@@ -192,15 +133,6 @@
                             <Button Content="保存配置" Style="{StaticResource PrimaryButtonStyle}"
                                     Width="100" Click="SaveDb_Click" />
                         </StackPanel>
-
-                        <!-- 提示信息 -->
-                        <Border Background="{DynamicResource Brush.Surface}" Padding="10" CornerRadius="6" Margin="0,16,0,0">
-                            <StackPanel>
-                                <TextBlock Text="提示" FontWeight="SemiBold" FontSize="11" Margin="0,0,0,6" />
-                                <TextBlock Text="• 配置保存后立即生效" Style="{StaticResource HintTextStyle}" FontSize="10" Margin="0,2,0,0" />
-                                <TextBlock Text="• 切换数据库后需重新加载数据" Style="{StaticResource HintTextStyle}" FontSize="10" Margin="0,2,0,0" />
-                            </StackPanel>
-                        </Border>
                     </StackPanel>
                 </ScrollViewer>
             </Border>

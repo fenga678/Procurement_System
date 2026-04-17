@@ -36,7 +36,7 @@ namespace CanteenProcurement.Wpf.Services
         public const int TrialMaxImportRows = 10;
 
         /// <summary>
-        /// 单例实例
+        /// 单例实例（向后兼容，新代码使用 DI）
         /// </summary>
         public static LicensingService Instance
         {
@@ -235,7 +235,8 @@ namespace CanteenProcurement.Wpf.Services
         {
             try
             {
-                // 注册码格式：Base64编码的JSON数据
+                // 移除短横线和空格（兼容格式化后的注册码）
+                licenseKey = licenseKey.Replace("-", "").Replace(" ", "");
                 var jsonBytes = Convert.FromBase64String(licenseKey);
                 var json = Encoding.UTF8.GetString(jsonBytes);
                 return JsonSerializer.Deserialize<DecodedLicense>(json);
@@ -279,7 +280,7 @@ namespace CanteenProcurement.Wpf.Services
         }
 
         /// <summary>
-        /// 验证当前注册状态
+        /// 验证当前注册状态（纯读操作，不触发保存）
         /// </summary>
         private bool ValidateRegistration()
         {
@@ -300,9 +301,17 @@ namespace CanteenProcurement.Wpf.Services
                 return false;
             }
 
-            // 重新验证注册码
-            var result = ValidateLicenseKey(_licenseData.LicenseKey);
-            return result.Success;
+            // 仅验证注册码，不保存（分离验证与持久化）
+            var decoded = DecodeLicenseKey(_licenseData.LicenseKey);
+            if (decoded == null) return false;
+            if (!VerifySignature(decoded)) return false;
+            if (!string.IsNullOrEmpty(decoded.MachineCode) &&
+                !decoded.MachineCode.Equals(MachineCode.Replace("-", ""), StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         #endregion

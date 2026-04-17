@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\HNYY\\src\\CanteenProcurement.Infrastructure\\CanteenProcurement.Infrastructure.csproj": {}
+    "E:\\hnyy\\src\\CanteenProcurement.Infrastructure\\CanteenProcurement.Infrastructure.csproj": {}
   },
   "projects": {
-    "E:\\HNYY\\src\\CanteenProcurement.Application\\CanteenProcurement.Application.csproj": {
+    "E:\\hnyy\\src\\CanteenProcurement.Application\\CanteenProcurement.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\HNYY\\src\\CanteenProcurement.Application\\CanteenProcurement.Application.csproj",
+        "projectUniqueName": "E:\\hnyy\\src\\CanteenProcurement.Application\\CanteenProcurement.Application.csproj",
         "projectName": "CanteenProcurement.Application",
-        "projectPath": "E:\\HNYY\\src\\CanteenProcurement.Application\\CanteenProcurement.Application.csproj",
+        "projectPath": "E:\\hnyy\\src\\CanteenProcurement.Application\\CanteenProcurement.Application.csproj",
         "packagesPath": "C:\\Users\\fenga6\\.nuget\\packages\\",
-        "outputPath": "E:\\HNYY\\src\\CanteenProcurement.Application\\obj\\",
+        "outputPath": "E:\\hnyy\\src\\CanteenProcurement.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fenga6\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "E:\\HNYY\\src\\CanteenProcurement.Core\\CanteenProcurement.Core.csproj": {
-                "projectPath": "E:\\HNYY\\src\\CanteenProcurement.Core\\CanteenProcurement.Core.csproj"
+              "E:\\hnyy\\src\\CanteenProcurement.Core\\CanteenProcurement.Core.csproj": {
+                "projectPath": "E:\\hnyy\\src\\CanteenProcurement.Core\\CanteenProcurement.Core.csproj"
               }
             }
           }
@@ -49,6 +49,14 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+          "dependencies": {
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.5, )",
+              "autoReferenced": true
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -60,6 +68,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+              "version": "[10.0.5, 10.0.5]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.win-x64",
+              "version": "[10.0.5, 10.0.5]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+              "version": "[10.0.5, 10.0.5]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -341,16 +363,21 @@
             "System.Xml.XPath.XDocument": "(,5.0.32767]"
           }
         }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
+        }
       }
     },
-    "E:\\HNYY\\src\\CanteenProcurement.Core\\CanteenProcurement.Core.csproj": {
+    "E:\\hnyy\\src\\CanteenProcurement.Core\\CanteenProcurement.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\HNYY\\src\\CanteenProcurement.Core\\CanteenProcurement.Core.csproj",
+        "projectUniqueName": "E:\\hnyy\\src\\CanteenProcurement.Core\\CanteenProcurement.Core.csproj",
         "projectName": "CanteenProcurement.Core",
-        "projectPath": "E:\\HNYY\\src\\CanteenProcurement.Core\\CanteenProcurement.Core.csproj",
+        "projectPath": "E:\\hnyy\\src\\CanteenProcurement.Core\\CanteenProcurement.Core.csproj",
         "packagesPath": "C:\\Users\\fenga6\\.nuget\\packages\\",
-        "outputPath": "E:\\HNYY\\src\\CanteenProcurement.Core\\obj\\",
+        "outputPath": "E:\\hnyy\\src\\CanteenProcurement.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fenga6\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -392,6 +419,12 @@
             "Microsoft.Extensions.Logging.Abstractions": {
               "target": "Package",
               "version": "[10.0.5, )"
+            },
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.5, )",
+              "autoReferenced": true
             }
           },
           "imports": [
@@ -405,6 +438,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+              "version": "[10.0.5, 10.0.5]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.win-x64",
+              "version": "[10.0.5, 10.0.5]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+              "version": "[10.0.5, 10.0.5]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -686,16 +733,21 @@
             "System.Xml.XPath.XDocument": "(,5.0.32767]"
           }
         }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
+        }
       }
     },
-    "E:\\HNYY\\src\\CanteenProcurement.Infrastructure\\CanteenProcurement.Infrastructure.csproj": {
+    "E:\\hnyy\\src\\CanteenProcurement.Infrastructure\\CanteenProcurement.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\HNYY\\src\\CanteenProcurement.Infrastructure\\CanteenProcurement.Infrastructure.csproj",
+        "projectUniqueName": "E:\\hnyy\\src\\CanteenProcurement.Infrastructure\\CanteenProcurement.Infrastructure.csproj",
         "projectName": "CanteenProcurement.Infrastructure",
-        "projectPath": "E:\\HNYY\\src\\CanteenProcurement.Infrastructure\\CanteenProcurement.Infrastructure.csproj",
+        "projectPath": "E:\\hnyy\\src\\CanteenProcurement.Infrastructure\\CanteenProcurement.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\fenga6\\.nuget\\packages\\",
-        "outputPath": "E:\\HNYY\\src\\CanteenProcurement.Infrastructure\\obj\\",
+        "outputPath": "E:\\hnyy\\src\\CanteenProcurement.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fenga6\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -712,11 +764,11 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "E:\\HNYY\\src\\CanteenProcurement.Application\\CanteenProcurement.Application.csproj": {
-                "projectPath": "E:\\HNYY\\src\\CanteenProcurement.Application\\CanteenProcurement.Application.csproj"
+              "E:\\hnyy\\src\\CanteenProcurement.Application\\CanteenProcurement.Application.csproj": {
+                "projectPath": "E:\\hnyy\\src\\CanteenProcurement.Application\\CanteenProcurement.Application.csproj"
               },
-              "E:\\HNYY\\src\\CanteenProcurement.Core\\CanteenProcurement.Core.csproj": {
-                "projectPath": "E:\\HNYY\\src\\CanteenProcurement.Core\\CanteenProcurement.Core.csproj"
+              "E:\\hnyy\\src\\CanteenProcurement.Core\\CanteenProcurement.Core.csproj": {
+                "projectPath": "E:\\hnyy\\src\\CanteenProcurement.Core\\CanteenProcurement.Core.csproj"
               }
             }
           }
@@ -737,25 +789,19 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "dependencies": {
-            "Azure.Identity": {
+            "Microsoft.Data.Sqlite": {
               "target": "Package",
-              "version": "[1.20.0, )"
+              "version": "[9.0.0, )"
             },
-            "Microsoft.Data.SqlClient": {
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[10.0.5, )",
+              "autoReferenced": true
             },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
+            "MySql.Data": {
               "target": "Package",
-              "version": "[10.0.5, )"
-            },
-            "MySql.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[10.0.1, )"
-            },
-            "System.Drawing.Common": {
-              "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[9.6.0, )"
             }
           },
           "imports": [
@@ -769,6 +815,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+              "version": "[10.0.5, 10.0.5]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.win-x64",
+              "version": "[10.0.5, 10.0.5]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+              "version": "[10.0.5, 10.0.5]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -1049,6 +1109,11 @@
             "System.Xml.XPath": "(,4.3.32767]",
             "System.Xml.XPath.XDocument": "(,5.0.32767]"
           }
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
         }
       }
     }

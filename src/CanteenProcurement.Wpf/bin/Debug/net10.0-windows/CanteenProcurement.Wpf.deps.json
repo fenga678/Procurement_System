@@ -11,10 +11,11 @@
           "BouncyCastle.Cryptography": "2.6.2",
           "CanteenProcurement.Application": "1.0.0",
           "CanteenProcurement.Core": "1.0.0",
+          "CanteenProcurement.Infrastructure": "1.0.0",
           "Microsoft.Data.Sqlite": "9.0.0",
           "Microsoft.Extensions.Configuration": "8.0.0",
           "Microsoft.Extensions.Configuration.Json": "8.0.0",
-          "MySql.Data": "9.6.0",
+          "Microsoft.Extensions.DependencyInjection": "10.0.5",
           "System.Management": "8.0.0"
         },
         "runtime": {
@@ -504,6 +505,20 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "CanteenProcurement.Infrastructure/1.0.0": {
+        "dependencies": {
+          "CanteenProcurement.Application": "1.0.0",
+          "CanteenProcurement.Core": "1.0.0",
+          "Microsoft.Data.Sqlite": "9.0.0",
+          "MySql.Data": "9.6.0"
+        },
+        "runtime": {
+          "CanteenProcurement.Infrastructure.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -736,6 +751,11 @@
       "sha512": ""
     },
     "CanteenProcurement.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CanteenProcurement.Infrastructure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

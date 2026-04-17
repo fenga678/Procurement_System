@@ -11,4 +11,10 @@
     <ProjectReference Include="..\CanteenProcurement.Core\CanteenProcurement.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Services\ICategoryService.cs" />
+    <Compile Remove="Services\IProcurementTaskService.cs" />
+    <Compile Remove="Services\IProductService.cs" />
+  </ItemGroup>
+
 </Project>

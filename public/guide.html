@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>操作指南 - 食堂物料预采购管理系统</title>
+  <meta name="description" content="食堂物料预采购管理系统操作指南：从安装配置到生成采购计划的全流程操作说明。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- 导航栏 -->
+<nav class="navbar">
+  <a href="index.html" class="nav-brand">
+    <img src="images/logo.png" alt="Logo" style="height:32px;">
+    食堂物料预采购管理系统
+  </a>
+  <button class="nav-toggle" aria-label="菜单">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">首页</a></li>
+    <li><a href="features.html">功能介绍</a></li>
+    <li><a href="guide.html" class="active">操作指南</a></li>
+    <li><a href="pricing.html">价格与注册</a></li>
+    <li><a href="contact.html">联系我们</a></li>
+  </ul>
+</nav>
+
+<!-- 页面顶栏 -->
+<section class="page-header">
+  <h1>操作指南</h1>
+  <p>从安装到生成采购计划，6步快速上手</p>
+</section>
+
+<!-- 系统要求 -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <h2>系统要求</h2>
+      <p>确认运行环境满足最低要求</p>
+    </div>
+    <div style="max-width:600px;margin:0 auto;">
+      <table class="compare-table">
+        <tr><th>项目</th><th>要求</th></tr>
+        <tr><td>操作系统</td><td>Windows 10 / 11（64位）</td></tr>
+        <tr><td>内存</td><td>4GB 以上</td></tr>
+        <tr><td>磁盘空间</td><td>200MB 以上</td></tr>
+        <tr><td>网络</td><td>Web导入功能需要网络连接</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 流程概览 -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>操作流程</h2>
+      <p>按照以下流程完成首次采购计划生成</p>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step"><strong>安装软件</strong><span>第 1 步</span></div>
+      <div class="flow-arrow">&#10140;</div>
+      <div class="flow-step"><strong>配置数据库</strong><span>第 2 步</span></div>
+      <div class="flow-arrow">&#10140;</div>
+      <div class="flow-step"><strong>设置分类</strong><span>第 3 步</span></div>
+      <div class="flow-arrow">&#10140;</div>
+      <div class="flow-step"><strong>录入商品</strong><span>第 4 步</span></div>
+      <div class="flow-arrow">&#10140;</div>
+      <div class="flow-step"><strong>创建任务</strong><span>第 5 步</span></div>
+      <div class="flow-arrow">&#10140;</div>
+      <div class="flow-step"><strong>生成计划</strong><span>第 6 步</span></div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>安装软件</h4>
+          <p>下载安装包，解压后直接运行 <strong>CanteenProcurement.Wpf.exe</strong> 即可启动系统。无需安装 .NET 运行时（自包含部署），无需额外配置。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>配置数据库</h4>
+          <p>进入<strong>系统设置</strong>页面，默认使用 SQLite（零配置，开箱即用）。如需使用 MySQL，切换数据库类型后填写服务器地址、端口、用户名和密码，点击"测试连接"确认后保存配置。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>设置商品分类</h4>
+          <p>进入<strong>分类管理</strong>页面，配置商品分类信息。系统预置了7大分类（蔬菜类、肉类、蛋类、食用油、米、挂面粉条、调味品），您可以根据实际情况调整名称、预算占比和采购频率。注意：所有启用分类的预算占比之和应为100%。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>录入商品信息</h4>
+          <p>进入<strong>商品管理</strong>页面，点击"新增"按钮逐个添加商品（名称、分类、单价、单位、最小间隔天数）。也支持通过"Web导入"功能从网页批量抓取商品数据，自动填入名称和价格，快速完成商品库搭建。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>创建采购任务</h4>
+          <p>进入<strong>任务管理</strong>页面，点击"新增"按钮创建月度采购任务。填写任务年月（如202604）、总预算金额、波动率（建议0.1-0.2）。可选择在高级设置中为特定分类指定固定金额。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h4>生成采购计划</h4>
+          <p>在任务列表中找到刚创建的任务（状态为"待生成"），点击<strong>"生成"</strong>按钮。系统将自动执行智能算法，数秒内生成覆盖全月的每日采购明细。生成完成后可点击"查看"浏览明细，或点击"导出"将采购清单导出为Excel文件。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 操作指南详情 -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <h2>常用操作详解</h2>
+      <p>掌握这些操作，充分发挥系统功能</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3 style="color:#1e3a5f;margin-bottom:12px;">&#128269; 商品筛选与搜索</h3>
+        <p style="font-size:15px;color:#64748b;">在商品管理页面，使用顶部分类下拉框筛选特定分类的商品；在搜索框中输入商品名称或备注关键词，实时过滤列表，快速定位目标商品。</p>
+      </div>
+      <div class="card">
+        <h3 style="color:#1e3a5f;margin-bottom:12px;">&#127988; Web数据导入</h3>
+        <p style="font-size:15px;color:#64748b;">点击"Web导入"按钮，输入目标网页URL，系统自动抓取商品数据。预览后为每个商品分配分类，调整价格和单位，即可批量导入。</p>
+      </div>
+      <div class="card">
+        <h3 style="color:#1e3a5f;margin-bottom:12px;">&#128202; 采购明细查看</h3>
+        <p style="font-size:15px;color:#64748b;">点击任务的"查看"按钮，在弹窗中浏览该月所有采购明细。支持按日期、分类筛选，清晰展示每天的采购商品、单价、数量和金额。</p>
+      </div>
+      <div class="card">
+        <h3 style="color:#1e3a5f;margin-bottom:12px;">&#128190; Excel导出</h3>
+        <p style="font-size:15px;color:#64748b;">点击任务的"导出"按钮，系统自动生成Excel文件，包含完整的采购明细数据。文件按日期、商品、分类组织，可直接用于采购执行和财务存档。</p>
+      </div>
+      <div class="card">
+        <h3 style="color:#1e3a5f;margin-bottom:12px;">&#128274; 软件注册</h3>
+        <p style="font-size:15px;color:#64748b;">进入系统设置页面，在左侧"授权管理"区域复制机器码，联系供应商获取注册码。粘贴注册码后点击"注册"按钮即可激活正式版，解除所有功能限制。</p>
+      </div>
+      <div class="card">
+        <h3 style="color:#1e3a5f;margin-bottom:12px;">&#128451; 数据库备份</h3>
+        <p style="font-size:15px;color:#64748b;">SQLite用户：直接复制程序目录下的 <code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;font-size:13px;">data/canteen.db</code> 文件即可完成备份。MySQL用户：使用数据库导出工具进行备份。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 注意事项 -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>注意事项</h2>
+      <p>使用前请留意以下事项</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-q">分类预算占比之和应为100% <span class="arrow">&#9660;</span></div>
+        <div class="faq-a">所有启用状态的分类，其预算占比之和应等于100%。如果比例不等于100%，可能导致预算分配异常。系统会在生成时进行校验。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">有采购记录的分类/商品无法删除 <span class="arrow">&#9660;</span></div>
+        <div class="faq-a">如果分类下有商品或采购明细记录，系统将阻止删除操作。建议使用"停用"功能代替删除，保留历史数据完整性。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">波动率建议设置在10%-20% <span class="arrow">&#9660;</span></div>
+        <div class="faq-a">波动率控制采购金额的随机浮动范围（0.1表示 &plusmn;10%）。建议设置在0.1-0.2之间，既能增加采购多样性，又不会导致预算偏差过大。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">注册码与机器绑定，不可跨电脑使用 <span class="arrow">&#9660;</span></div>
+        <div class="faq-a">每台电脑的机器码唯一，注册码基于机器码生成。更换电脑后需要重新获取注册码。请勿更改系统时间，否则可能导致授权失效。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">切换数据库后需重新加载数据 <span class="arrow">&#9660;</span></div>
+        <div class="faq-a">在系统设置中切换数据库（SQLite &harr; MySQL）后，配置立即生效，但需要重新加载数据。建议在切换前备份当前数据库中的重要数据。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="background:linear-gradient(135deg,#1e40af,#2563eb);color:#fff;text-align:center;">
+  <div class="container">
+    <h2 style="font-size:28px;margin-bottom:12px;">准备好开始了吗？</h2>
+    <p style="font-size:17px;opacity:.9;margin-bottom:32px;">立即获取正式版，解锁全部功能</p>
+    <a href="contact.html" class="btn" style="background:#fff;color:#1d4ed8;">查看价格 &amp; 注册</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>&copy; 2026 食堂物料预采购管理系统 版权所有</p>
+  <p>基于 C# + WPF + .NET 10 构建 | Windows 10/11 64位</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

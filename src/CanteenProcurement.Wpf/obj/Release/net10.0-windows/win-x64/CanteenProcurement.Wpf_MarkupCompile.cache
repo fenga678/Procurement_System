@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-e:\HNYY\src\CanteenProcurement.Wpf\obj\Release\net10.0-windows\win-x64\
+E:\hnyy\src\CanteenProcurement.Wpf\obj\Release\net10.0-windows\win-x64\
 CanteenProcurement.Wpf
 none
 false
 TRACE;RELEASE;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-e:\HNYY\src\CanteenProcurement.Wpf\App.xaml
+E:\hnyy\src\CanteenProcurement.Wpf\App.xaml
 30376922404
 
-33-1276527138
-237-403952500
+352061549721
+238-1498214981
 Controls\ActionButtonGroup.xaml;Controls\LoadingOverlay.xaml;Controls\SearchFilterBar.xaml;Controls\SidebarNav.xaml;Controls\StatusBadge.xaml;Controls\ToastHost.xaml;Controls\TopHeader.xaml;Dialogs\AppMessageDialog.xaml;Dialogs\CategoryEditorDialog.xaml;Dialogs\ProductEditorDialog.xaml;Dialogs\TaskDetailsDialog.xaml;Dialogs\TaskEditorDialog.xaml;Dialogs\WebImportDialog.xaml;MainWindow.xaml;Resources\Styles.xaml;Resources\Styles\Controls.Badges.xaml;Resources\Styles\Controls.Buttons.xaml;Resources\Styles\Controls.DataGrid.xaml;Resources\Styles\Controls.Inputs.xaml;Resources\Styles\Layouts.xaml;Resources\Tokens\Brushes.xaml;Resources\Tokens\Colors.xaml;Resources\Tokens\Effects.xaml;Resources\Tokens\Radius.xaml;Resources\Tokens\Spacing.xaml;Resources\Tokens\Typography.xaml;Views\CategoryManagementView.xaml;Views\ProductManagementView.xaml;Views\SystemSettingsView.xaml;Views\TaskManagementView.xaml;
 
 False
