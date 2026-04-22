@@ -34,3 +34,6 @@ e:\HNYY\src\CanteenProcurement.Core\obj\Release\net10.0\CanteenProcurement.Core.
 e:\HNYY\src\CanteenProcurement.Core\obj\Release\net10.0\CanteenProcurement.Core.dll
 e:\HNYY\src\CanteenProcurement.Core\obj\Release\net10.0\refint\CanteenProcurement.Core.dll
 e:\HNYY\src\CanteenProcurement.Core\obj\Release\net10.0\ref\CanteenProcurement.Core.dll
+E:\HNYY\src\CanteenProcurement.Core\bin\Release\net10.0\CanteenProcurement.Core.pdb
+E:\HNYY\src\CanteenProcurement.Core\obj\Release\net10.0\CanteenProcurement.Core.sourcelink.json
+E:\HNYY\src\CanteenProcurement.Core\obj\Release\net10.0\CanteenProcurement.Core.pdb

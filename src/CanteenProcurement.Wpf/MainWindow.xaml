@@ -21,7 +21,7 @@
                             Margin="0,0,0,20"
                             Title="食堂物料预采购管理系统"
                             Subtitle="统一预算拆分、分类调度与采购执行的桌面工作台"
-                            MetaTitle="v1.2.0"
+                            MetaTitle="v1.4.0"
                             MetaSubtitle="{Binding LicenseStatus, RelativeSource={RelativeSource AncestorType=Window}}" />
 
         <Border Grid.Row="1" Style="{StaticResource ShellSurfaceStyle}">

@@ -160,18 +160,39 @@ public sealed class TaskPlanningService : ITaskPlanningService
         decimal floatRate)
     {
         var slots = new List<GeneratedDetailSlot>();
+        var lastUsedDates = new Dictionary<int, DateTime>();
+
         foreach (var purchaseDate in GetPurchaseDates(startDate, category.FrequencyDays))
         {
             var minItems = Math.Max(1, category.DailyMinItems);
             var maxItems = Math.Max(minItems, category.DailyMaxItems);
             var pickCount = Math.Min(products.Count, random.Next(minItems, maxItems + 1));
-            var selectedProducts = products
-                .OrderBy(_ => random.Next())
-                .Take(pickCount)
+
+            // 1. 筛选出当前可用的商品池
+            // 填充品：间隔为1，永远可用
+            // 特产品：间隔>=2，必须度过冷却期
+            var readyProducts = products
+                .Where(p => p.MinIntervalDays <= 1 || 
+                           !lastUsedDates.TryGetValue(p.Id, out var lastDate) || 
+                           (purchaseDate - lastDate).TotalDays >= p.MinIntervalDays)
                 .ToList();
 
+            // 2. 优先级排序：长间隔(>=14)的特产品如果就绪，优先安排；其余随机
+            var orderedReady = readyProducts
+                .OrderByDescending(p => p.MinIntervalDays >= 14)
+                .ThenBy(_ => random.Next())
+                .ToList();
+
+            // 3. 选取商品：只从就绪池中选取
+            // 注意：如果就绪池数量不足以满足 pickCount，我们也不再从冷却池抓取 >= 2 的商品
+            // 这样可以确保长间隔设置（如25天）得到严格执行
+            var selectedProducts = orderedReady.Take(pickCount).ToList();
+
+            // 4. 更新记录最后使用日期并生成 Slots
             foreach (var product in selectedProducts)
             {
+                lastUsedDates[product.Id] = purchaseDate;
+
                 var weight = Math.Max(0.1m, 1m + (decimal)((random.NextDouble() * 2d - 1d) * (double)floatRate));
                 slots.Add(new GeneratedDetailSlot
                 {

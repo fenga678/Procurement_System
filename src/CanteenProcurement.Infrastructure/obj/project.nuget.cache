@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UZc1UDEP0Tk=",
+  "dgSpecHash": "wYwTmuHtso8=",
   "success": true,
   "projectFilePath": "E:\\hnyy\\src\\CanteenProcurement.Infrastructure\\CanteenProcurement.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -22,7 +22,7 @@
     "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.5\\microsoft.extensions.logging.abstractions.10.0.5.nupkg.sha512",
     "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.extensions.options\\10.0.5\\microsoft.extensions.options.10.0.5.nupkg.sha512",
     "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.5\\microsoft.extensions.primitives.10.0.5.nupkg.sha512",
-    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.net.illink.tasks\\10.0.5\\microsoft.net.illink.tasks.10.0.5.nupkg.sha512",
+    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.net.illink.tasks\\10.0.6\\microsoft.net.illink.tasks.10.0.6.nupkg.sha512",
     "C:\\Users\\fenga6\\.nuget\\packages\\mysql.data\\9.6.0\\mysql.data.9.6.0.nupkg.sha512",
     "C:\\Users\\fenga6\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.10\\sqlitepclraw.bundle_e_sqlite3.2.1.10.nupkg.sha512",
     "C:\\Users\\fenga6\\.nuget\\packages\\sqlitepclraw.core\\2.1.10\\sqlitepclraw.core.2.1.10.nupkg.sha512",
@@ -34,9 +34,10 @@
     "C:\\Users\\fenga6\\.nuget\\packages\\system.security.permissions\\8.0.0\\system.security.permissions.8.0.0.nupkg.sha512",
     "C:\\Users\\fenga6\\.nuget\\packages\\system.windows.extensions\\8.0.0\\system.windows.extensions.8.0.0.nupkg.sha512",
     "C:\\Users\\fenga6\\.nuget\\packages\\zstdsharp.port\\0.8.6\\zstdsharp.port.0.8.6.nupkg.sha512",
-    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\10.0.5\\microsoft.netcore.app.runtime.win-x64.10.0.5.nupkg.sha512",
-    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\10.0.5\\microsoft.windowsdesktop.app.runtime.win-x64.10.0.5.nupkg.sha512",
-    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\10.0.5\\microsoft.aspnetcore.app.runtime.win-x64.10.0.5.nupkg.sha512"
+    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\10.0.6\\microsoft.netcore.app.runtime.win-x64.10.0.6.nupkg.sha512",
+    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\10.0.6\\microsoft.windowsdesktop.app.runtime.win-x64.10.0.6.nupkg.sha512",
+    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\10.0.6\\microsoft.aspnetcore.app.runtime.win-x64.10.0.6.nupkg.sha512",
+    "C:\\Users\\fenga6\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\10.0.6\\microsoft.netcore.app.crossgen2.win-x64.10.0.6.nupkg.sha512"
   ],
   "logs": []
 }

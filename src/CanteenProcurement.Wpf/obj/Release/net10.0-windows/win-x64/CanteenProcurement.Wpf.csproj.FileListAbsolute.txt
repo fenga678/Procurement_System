@@ -1268,7 +1268,6 @@ e:\HNYY\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\createdum
 e:\HNYY\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\hostfxr.dll
 e:\HNYY\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\hostpolicy.dll
 e:\HNYY\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\mscordaccore.dll
-e:\HNYY\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\mscordaccore_amd64_amd64_10.0.526.15411.dll
 e:\HNYY\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\mscordbi.dll
 e:\HNYY\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\mscorrc.dll
 e:\HNYY\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\msquic.dll
@@ -1500,3 +1499,10 @@ E:\hnyy\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\zh-Hant\U
 E:\hnyy\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\zh-Hant\UIAutomationTypes.resources.dll
 E:\hnyy\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\zh-Hant\WindowsBase.resources.dll
 E:\hnyy\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\CanteenProcurement.Infrastructure.dll
+E:\HNYY\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\CanteenProcurement.Wpf.pdb
+E:\HNYY\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\CanteenProcurement.Core.pdb
+E:\HNYY\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\CanteenProcurement.Application.pdb
+E:\HNYY\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\CanteenProcurement.Infrastructure.pdb
+E:\HNYY\src\CanteenProcurement.Wpf\obj\Release\net10.0-windows\win-x64\CanteenProcurement.Wpf.sourcelink.json
+E:\HNYY\src\CanteenProcurement.Wpf\obj\Release\net10.0-windows\win-x64\CanteenProcurement.Wpf.pdb
+E:\hnyy\src\CanteenProcurement.Wpf\bin\Release\net10.0-windows\win-x64\mscordaccore_amd64_amd64_10.0.626.17701.dll

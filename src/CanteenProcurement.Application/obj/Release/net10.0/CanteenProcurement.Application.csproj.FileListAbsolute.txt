@@ -10,3 +10,7 @@ E:\hnyy\src\CanteenProcurement.Application\obj\Release\net10.0\CanteenP.D4BD5445
 E:\hnyy\src\CanteenProcurement.Application\obj\Release\net10.0\CanteenProcurement.Application.dll
 E:\hnyy\src\CanteenProcurement.Application\obj\Release\net10.0\refint\CanteenProcurement.Application.dll
 E:\hnyy\src\CanteenProcurement.Application\obj\Release\net10.0\ref\CanteenProcurement.Application.dll
+E:\HNYY\src\CanteenProcurement.Application\bin\Release\net10.0\CanteenProcurement.Application.pdb
+E:\HNYY\src\CanteenProcurement.Application\bin\Release\net10.0\CanteenProcurement.Core.pdb
+E:\HNYY\src\CanteenProcurement.Application\obj\Release\net10.0\CanteenProcurement.Application.sourcelink.json
+E:\HNYY\src\CanteenProcurement.Application\obj\Release\net10.0\CanteenProcurement.Application.pdb
